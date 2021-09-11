@@ -4,11 +4,13 @@ import { PiezaService } from 'src/app/service/pieza.service';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { ModalProductoComponent } from '../modal-producto/modal-producto.component';
 import { ProductoModule } from 'src/app/models/producto.module';
 import * as $ from 'jquery';
+import { ProductoService } from 'src/app/service/producto.service';
 
 @Component({
   selector: 'app-pieza',
@@ -17,7 +19,7 @@ import * as $ from 'jquery';
 })
 export class PiezaComponent implements OnInit {
 
-  constructor(public service:PiezaService,private formBuilder: FormBuilder,private modalService: BsModalService) { 
+  constructor(public service:PiezaService,private formBuilder: FormBuilder,private modalService: BsModalService, public serviceProductos:ProductoService) { 
 
     this.frmPieza= this.formBuilder.group({
       id: [''],
@@ -53,11 +55,61 @@ export class PiezaComponent implements OnInit {
   public totalRegistros:number=0
   public isDisabled:boolean=true
 
+  public filtroProducto:boolean=false
+  public filtroProductoId:any=0
+
+
   ngOnInit(): void {
     
     this.obtenerPaginadoInicial(this.page)
+    this.configuracionInicial()
 
+  }
+
+
+  public configuracionInicial(){
+
+    this.serviceProductos.listarProductos().subscribe(res=>{
+      this.serviceProductos.listaProductos=res as  ProductoModule[];
+
+    });
+
+  }
+
+  public onChangeProducto(){
+
+    
+    if(this.filtroProductoId!=0){
+
+      var pagina=1
+      this.page=pagina
+      this.next=pagina+1
+      this.prev=pagina-1
+      this.paginas=[]
+      this.current=pagina
+      this.filtroProducto=true
+      $('#loading').fadeIn('slow')
   
+      this.service.listarPaginasFiltroProducto(this.filtroProductoId,pagina-1,this.tamanio).subscribe(res=>{
+
+        this.last=res.totalPages as number
+        this.service.piezas=res.content as  PiezaModule[]
+        this.totalRegistros=res.totalElements as number
+  
+        for (let i=0; i < this.last; i++){
+          this.paginas.push(i+1)
+        }
+        $('#loading').fadeOut('slow')
+  
+      });
+    }else{
+
+      this.filtroProducto=false
+      this.obtenerPaginadoInicial(1)
+    }
+
+ 
+
   }
 
   public onChangeMostrar(tamanio:any) {
@@ -75,20 +127,22 @@ export class PiezaComponent implements OnInit {
     this.paginas=[]
     this.current=pagina
 
-   
-
     $('#loading').fadeIn('slow')
-    this.service.listarPaginas(pagina-1,this.tamanio).subscribe(res=>{
-    console.log(res)
-    this.last=res.totalPages as number
-    this.service.piezas=res.content as  PiezaModule[];
-    this.totalRegistros=res.totalElements as number
 
-      for (let i=0; i < this.last; i++){
-        this.paginas.push(i+1)
-      }
-      $('#loading').fadeOut('slow')
-    });
+      this.service.listarPaginas(pagina-1,this.tamanio).subscribe(res=>{
+        console.log(res)
+        this.last=res.totalPages as number
+        this.service.piezas=res.content as  PiezaModule[];
+        this.totalRegistros=res.totalElements as number
+    
+          for (let i=0; i < this.last; i++){
+            this.paginas.push(i+1)
+          }
+          $('#loading').fadeOut('slow')
+        });
+
+    
+
 
   }
 
@@ -104,21 +158,41 @@ export class PiezaComponent implements OnInit {
     this.prev=pagina-1
     this.paginas=[]
     this.current=pagina
-
-   
-
     $('#loading').fadeIn('slow')
-    this.service.listarPaginas(pagina-1,this.tamanio).subscribe(res=>{
-    console.log(res)
-    this.last=res.totalPages as number
-    this.service.piezas=res.content as  PiezaModule[];
-    this.totalRegistros=res.totalElements as number
+    
+    if(!this.filtroProducto){
 
-      for (let i=0; i < this.last; i++){
-        this.paginas.push(i+1)
-      }
-      $('#loading').fadeOut('slow')
-    });
+      console.log('paginado general')
+        
+        this.service.listarPaginas(pagina-1,this.tamanio).subscribe(res=>{
+        console.log(res)
+        this.last=res.totalPages as number
+        this.service.piezas=res.content as  PiezaModule[];
+        this.totalRegistros=res.totalElements as number
+
+          for (let i=0; i < this.last; i++){
+            this.paginas.push(i+1)
+          }
+          $('#loading').fadeOut('slow')
+        });
+
+    }else{
+
+      console.log('paginado por filtro producto')
+      this.service.listarPaginasFiltroProducto(this.filtroProductoId,pagina-1,this.tamanio).subscribe(res=>{
+
+        this.last=res.totalPages as number
+        this.service.piezas=res.content as  PiezaModule[]
+        this.totalRegistros=res.totalElements as number
+
+        for (let i=0; i < this.last; i++){
+          this.paginas.push(i+1)
+        }
+        $('#loading').fadeOut('slow')
+
+      });
+
+  }
 
   }
 

@@ -1,28 +1,61 @@
 
 <div *ngIf="!registro"> 
 
-    <div class="btn-group" role="group" aria-label="Basic example" >
-        <button type="button" class="btn btn-secondary" (click)="nuevaPieza()" >Nuevo</button>
-    </div>
+
+    <div class="container-fluid" >
+
+        <div class="row filtros"> 
+
+            <div class="form-group col-2" >
+                <label for="filtroActividad">PRODUCTO</label>
+                <select  id="filtroActividad" class="form-control form-control-sm" [(ngModel)]="filtroProductoId" (change)="onChangeProducto()">
+                    <option value="0">[TODOS]</option>
+                    <option *ngFor='let producto of serviceProductos.listaProductos' [ngValue]="producto.id">{{producto.nombre}}</option>
+                </select>
+            </div>
     
+            <div class="form-group col-2 d-none" >
+                <label for="filtroActividad">COLOR</label>
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" placeholder="Buscar por color">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                </div>
+                
+            </div>
+    
+
+        </div>
+
+    </div>
+   
+
+    <div class=" btn-group" role="group" aria-label="Basic example" >
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button " class="btn btn-sm btn-secondary" (click)="nuevaPieza()"> <i class="fa far fa-file"></i>&nbsp;&nbsp; Nuevo</button>
+        
+    </div>
+
     
     <div class="row" >
         <div class="col-12">
             <div class="card mt-3">
+
                 <div class="card-body">
                   
                     <div class="card-block table-border-style ">
         
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-hover ">
                                 <thead>
                                     <tr>                                                        
                                         <th class="d-none">ID</th>
-                                        <th>Producto</th>
-                                        <th>Metraje</th>
-                                        <th>Color</th>
-                                        <th>Ubicacion</th>
-                                        <th>Opciones</th>
+                                        <th>PRODUCTO</th>
+                                        <th>METRAJE</th>
+                                        <th>COLOR</th>
+                                        <th>UBICACIÓN</th>
+                                        <th>OPCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -30,6 +30,20 @@ export class PiezaService {
     return this.httpClient.get<any>(`${this.URL_API}/pagina`, {params: params});
   }
 
+  public listarPaginasFiltroProducto(id:number,pagina: number, tamaño: number): Observable<any>{
+    const params = new HttpParams()
+    .set('page', pagina)
+    .set('size', tamaño);
+    return this.httpClient.get<any>(`${this.URL_API}/producto/${id}`, {params: params});
+  }
+
+  public listarPaginasFiltroColor(color:String,pagina: number, tamaño: number): Observable<any>{
+    const params = new HttpParams()
+    .set('page', pagina)
+    .set('size', tamaño);
+    return this.httpClient.get<any>(`${this.URL_API}/color/${color}`, {params: params});
+  }
+
   public paginado(pagina:number, tamaño:number){
 
     return this.httpClient.get(this.URL_API+"/pagina/?page="+pagina+"&size="+tamaño);

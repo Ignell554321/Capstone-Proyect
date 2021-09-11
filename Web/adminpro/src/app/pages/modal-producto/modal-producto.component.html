@@ -1,4 +1,4 @@
-<div class="modal-header" style="background: #2980B9; color:white;">
+<div class="modal-header" style="background: #242A33; color:white;">
     <h4 class="modal-title pull-left"><i class="fas fa-box-open"></i>&nbsp;  Lista De Productos </h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true" style="color: white;">&times;</span>
@@ -15,7 +15,7 @@
             <div class="table-responsive" style="height: 450px;">
             
                  <table class="table table-sm  table-hover" id="tblListarProductos">
-                         <thead style="background: #D9EDF7;">
+                         <thead style="background: #F4F6F9;">
                            <tr class="text-center">
                                <th scope="col">ID</th>
                              <th scope="col">Nombre</th>
@@ -34,7 +34,7 @@
                                  <td >{{producto.descripcion}} </td>
                                  <td >{{producto.costo}} </td>
                                  <td>
-                                 <button (click)="seleccionarProducto(producto)"  class="btn btn-primary btn-sm mr-1"><i class="fa fa-hand-o-up"></i></button>
+                                 <button (click)="seleccionarProducto(producto)"  class="btn btn-secondary btn-sm mr-1"><i class="fa fa-hand-o-up"></i></button>
                                  </td>
                                </tr>
                              

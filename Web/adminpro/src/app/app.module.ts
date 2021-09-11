@@ -9,7 +9,7 @@ import { PagesModule } from './pages/pages.module';
 import { PiezaComponent } from './pages/pieza/pieza.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms'
-
+import { FormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 
@@ -29,6 +29,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AuthModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     ModalModule.forRoot()
   ],
   providers: [
