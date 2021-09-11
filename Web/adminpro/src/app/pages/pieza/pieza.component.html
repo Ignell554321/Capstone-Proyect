@@ -1,0 +1,219 @@
+
+<div *ngIf="!registro"> 
+
+    <div class="btn-group" role="group" aria-label="Basic example" >
+        <button type="button" class="btn btn-secondary" (click)="nuevaPieza()" >Nuevo</button>
+    </div>
+    
+    
+    <div class="row" >
+        <div class="col-12">
+            <div class="card mt-3">
+                <div class="card-body">
+                  
+                    <div class="card-block table-border-style ">
+        
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>                                                        
+                                        <th class="d-none">ID</th>
+                                        <th>Producto</th>
+                                        <th>Metraje</th>
+                                        <th>Color</th>
+                                        <th>Ubicacion</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let pieza of service.piezas'>
+                                        <td class="d-none">{{pieza.id}}</td>
+                                        <td>{{pieza.producto.nombre}}</td>
+                                        <td>{{pieza.metraje}}</td>
+                                        <td>{{pieza.color}}</td>
+                                        <td>{{pieza.ubicacion}}</td>
+                                        <td class="mt-2"> 
+                                            <i class="fa fa-eye" (click)="editarPieza(pieza)" ></i> &nbsp;
+                                            <i class="fa fa-times" (click)="eliminarPieza(pieza)"></i> &nbsp;
+                                        </td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                         </div>
+                    
+                    </div>
+                 
+    
+                </div>
+    
+    
+                     <!-- INICIO FOOTER   -->
+                                        
+                     <div class="card-footer">
+                                       
+                        <hr style="margin-top: -40px;">
+                        
+                         <main role="main" class="container-fluid mt-4">     
+                           
+                              <div class="row text-center justify-content-center">   
+                                  <div class="col-12">
+                                 
+                                    <label for="" class="float-left">Mostando 1 al 10 de {{totalRegistros}} registros</label>
+                        
+                                     <!--SELECT-->
+                                      <select (change)="onChangeMostrar(tamanioPaginado.value)"  #tamanioPaginado class="mx-auto" id="cmbtamanioPaginaCurso"  style="height: 30px; margin-top: -5px;">   
+                                        <option *ngFor="let tamanio of tamaniosPaginado" >&nbsp;{{tamanio}}&nbsp;</option>
+                                      </select>
+                                
+                                       <div class=" float-right" style="margin-top: -10px;">
+                                 
+                                         <nav aria-label="Pagination">
+                                          <ul class="pagination justify-content-end">
+                                           <li class="page-item " [ngClass]="{'disabled': prev == 0, '':prev!=0 }" (click)="obtenerPaginado(prev)" >
+                                                   <a class="page-link" >Anterior</a>
+                                           </li>
+                                            <li class="page-item"  *ngFor="let pagina of paginas"  [ngClass]="{'active': pagina == page, '':pagina!=page }" (click)="obtenerPaginado(pagina)">
+                                                <a class="page-link active">{{pagina}}</a>
+                                            </li>
+                                            <li class="page-item" [ngClass]="{'disabled': current == last, '':current!=last }" (click)="obtenerPaginado(next)">
+                                                   <a class="page-link" >Siguiente</a>
+                                           </li>  
+                                          </ul>
+                                        </nav>	  
+                                                                      
+                                     </div>
+                                     
+                                  </div>
+                              </div>
+                           </main>
+                                                        
+                        </div>  
+                        
+                        <!-- FIN FOOTER   --> 
+            </div>
+    
+        </div>
+    </div>
+    
+    </div>
+
+
+    <div *ngIf="registro">
+
+        <div class="card mt-3">
+            <div class="card-body">
+        
+                    <form [formGroup]="frmPieza">
+
+                        <div class="row mt-2">
+
+                        <div class="col-lg-2">
+        
+                            <div class="form-group">
+                
+                                <label>Metraje</label>
+                                <input type="text" formControlName="metraje" class="form-control form-control-sm">
+                    
+                            </div>
+                
+                        </div>
+                        
+                        <div class="col-lg-2">
+                
+                            <div class="form-group">
+                
+                                <label>Color</label>
+                                <input type="text" formControlName="color" class="form-control form-control-sm">
+                    
+                            </div>
+                
+                        </div>
+            
+                        <div class="col-lg-2">
+                
+                            <div class="form-group">
+                
+                                <label>Ubicacion</label>
+                                <input type="text" formControlName="ubicacion" class="form-control form-control-sm">
+                    
+                            </div>
+                
+                        </div>
+                    </div>
+                        <hr>
+
+                        <div formGroupName="producto">
+
+                             <!--PRODUCTO-->
+        
+                
+                                <div class="row">
+                        
+                                    <div class="col-12">
+                                        <label>Producto</label>
+                                    </div>
+                        
+                                    <input type="text" formControlName="id" class="d-none" >
+
+                                    <div class="col-lg-3">
+                        
+                                        <div class="form-group">
+                            
+                                            <label>Nombre</label>
+                                            <div class="input-group">
+                        
+                                                <input readonly type="text" formControlName="nombre" class="form-control form-control-sm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                <button class="btn btn-sm btn-outline-secondary " (click)="cargarModalProducto()" type="button"><i class="fa fa-search"></i></button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                            
+                                    </div>
+                                    
+                        
+                                    <div class="col-lg-1">
+                            
+                                        <div class="form-group">
+                            
+                                            <label>Costo</label>
+                                            <input  readonly type="text" class="form-control form-control-sm" formControlName="costo">
+                                
+                                        </div>
+                            
+                                    </div>
+                        
+                        
+                                </div>
+                        
+                                <div class="row">
+                                    <div class="col-lg-5">
+                            
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Descripcion</label>
+                                            <textarea readonly class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descripcion"></textarea>
+                                        </div>
+                        
+                                    </div>
+                                </div>
+
+                        </div>
+
+                    
+
+                    </form>
+
+                    <button class="btn btn-sm btn-outlet btn-success" (click)="guardarPieza()">Guardar</button>
+                    <button class="btn btn-sm btn-secondary ml-3" (click)="cancelar()">Cancelar</button>
+
+                
+
+            </div>
+        </div>
+        
+
+    </div>
+    
+    

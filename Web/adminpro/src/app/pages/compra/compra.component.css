@@ -1,0 +1,11 @@
+.fa-eye{
+    color: #159cb8;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.fa-times{
+    color: red;
+    cursor: pointer;
+    font-size: 25px;
+}

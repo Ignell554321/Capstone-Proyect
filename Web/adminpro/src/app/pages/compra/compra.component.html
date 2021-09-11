@@ -1,0 +1,420 @@
+
+<div *ngIf="!registro"> 
+
+<div class="btn-group" role="group" aria-label="Basic example" >
+    <button type="button" class="btn btn-secondary" (click)="nuevaCompra()">Nuevo</button> <!--routerLink="./ingresar"-->
+</div>
+
+
+<div class="row" >
+    <div class="col-12">
+        <div class="card mt-3">
+            <div class="card-body">
+              
+                <div class="card-block table-border-style ">
+    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>                                                        
+                                    <th class="d-none">ID</th>
+                                    <th>Proveedor</th>
+                                    <th>Fecha</th>
+                                    <th>Num. Comp.</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="d-none">prueba</td>
+                                    <td>prueba</td>
+                                    <td>prueba</td>
+                                    <td>prueba</td>
+                                    <td class="mt-2"> 
+                                        <i class="fa fa-eye"></i> &nbsp;
+                                        <i class="fa fa-times"></i> &nbsp;
+                                    </td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                     </div>
+                
+                </div>
+             
+
+            </div>
+
+
+                 <!-- INICIO FOOTER   -->
+                                    
+                 <div class="card-footer">
+                                   
+                    <hr style="margin-top: -40px;">
+                    
+                     <main role="main" class="container-fluid mt-4">     
+                       
+                          <div class="row text-center justify-content-center">   
+                              <div class="col-12">
+                             
+                                <label for="" class="float-left">Mostando 1 al 10 de 10 registros</label>
+                    
+                                 <!--SELECT-->
+                                  <select onchange="pageSize(3)"  class="mx-auto" id="cmbtamanioPaginaCurso"  style="height: 30px; margin-top: -5px;">
+                                      <option >&nbsp;10&nbsp;</option>
+                                      <option >&nbsp;30&nbsp;</option>
+                                      <option >&nbsp;50&nbsp;</option>
+                                  </select>
+                            
+                                   <div class=" float-right" style="margin-top: -10px;">
+                             
+                                     <nav aria-label="Pagination">
+                                      <ul class="pagination justify-content-end">
+                                       <li class="page-item" >
+                                               <a class="page-link" >Anterior</a>
+                                       </li>
+                                        <li class="page-item"  >
+                                            <a class="page-link" >1</a>
+                                        </li>
+                                        <li class="page-item" >
+                                               <a class="page-link" >Siguiente</a>
+                                       </li>  
+                                      </ul>
+                                    </nav>	  
+                                                                  
+                                 </div>
+                                 
+                              </div>
+                          </div>
+                       </main>
+                                                    
+                    </div>  
+                    
+                    <!-- FIN FOOTER   --> 
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+
+<div *ngIf="registro">
+
+
+    <!-- INGRESAR - EDITAR-->
+
+
+<div class="container-fluid my-3" style="border:solid 1px #D9EDF7;">
+  
+    <div class="row " style="background: #D5D7D7 ; color:#5D7F9A;">
+
+        <div class="col-12">
+               <i class="fa fa-windows  float-left" style="margin-top: 18px;">&nbsp; &nbsp; </i> <h3 style="margin-top: 15px;"><strong>Registrar Compra</strong> </h3> 
+
+            <div class="float-right" style="margin-top: -40px;">
+                <i class="fa fa-arrow-left" (click)="cancelar()"></i>
+            </div>
+
+        </div>
+        
+       
+    </div>
+
+    <div class="row pt-3">
+
+        <div class="col-md-3">
+
+            <div class="form-group">
+
+                <label for="" ><strong>Tipo Comprobante</strong></label>
+
+                <select class="form-control form-control-sm" id="cmbTipoComprobante" required="required">
+                        <option [value]="1">Boleta</option>
+                        <option [value]="2">Factura</option>
+                      </select>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-2">
+
+                <div class="form-group ">
+
+                    <label for=""><strong>Serie</strong></label>
+
+                    <input type="text" placeholder="Serie" id="txtSerie"  class="form-control form-control-sm" required="required">
+
+
+                </div>
+
+        </div>
+
+        <div class="col-md-2">
+
+                <div class="form-group">
+
+                    <label for="" ><strong>Numero</strong></label>
+
+                    <input type="text" placeholder="Numero" id="txtNumeroComprobante"  class="form-control form-control-sm" required="required">
+
+
+                </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+                <div class="form-group">
+
+                    <label for="" ><strong>Fecha</strong></label>
+
+                    <input type="date" id="dtFechaCompra"  class="form-control form-control-sm" required="required">
+
+
+                </div>
+
+        </div>
+
+        <div class="col-md-2">
+
+                <div class="form-group">
+
+                    <label for="" ><strong>Tipo de cambio</strong></label>
+
+                    <select class="form-control form-control-sm" id="cmbTipoDeCambio" >
+                            <option th:value="Soles">Soles</option>
+                            <option th:value="Dolares">Dolares</option>
+                    </select>
+
+
+                </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+
+            <div class="col-md-3">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Ruc Proveedor:</strong></label>
+
+                            <div class="form-inline">
+
+                                    <input type="text" placeholder="Ruc " class="form-control form-control-sm w-50"   disabled id="txtRucProveedor" >
+                                    <button type="button" class="btn btn-sm btn-secondary ml-1"  ><i class="fa fa-search"></i></button>
+
+                            </div>                                 
+
+                    </div>  
+
+            </div>
+
+            <div class="col-md-5">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Razon Social:</strong></label>
+
+                            <input type="text"   placeholder="Razon Social" class="form-control form-control-sm" disabled  id="txtRazonSocial" >
+                                                            
+
+                    </div>  
+
+            </div>
+
+            <div class="col-md-4">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Direccion:</strong></label>
+
+                            <input type="text" placeholder="Direccion"  class="form-control form-control-sm" disabled  id="txtDireccion" >
+                                                            
+
+                    </div>  
+
+            </div>
+
+    </div>
+
+    <div class="row">
+
+            <div class="col-md-5">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Producto:</strong></label>
+
+                            <div class="form-inline">
+
+                                    <input type="text" placeholder="Desripcion producto" class="form-control form-control-sm w-75" disabled #txtDescripcionProducto>
+                                    <button type="button"  class="btn btn-secondary btn-sm ml-2" >
+                                            <i class="fa fa-search"></i>
+                                    </button>
+
+                            </div>                                 
+
+                    </div>  
+
+            </div>
+    
+    
+            <div class="col-md-2">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Valor compra:</strong></label>
+
+                            <input type="text" placeholder="Valor compra" class="form-control form-control-sm"  name="txtValorCompra"  id="txtValorCompra" >
+                                                            
+
+                    </div>  
+
+            </div>
+
+            <div class="col-md-2">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Cantidad:</strong></label>
+
+                            <input type="text" placeholder="Cantidad" class="form-control form-control-sm"  name="txtCantidad"  id="txtCantidad" >
+                                                            
+
+                    </div>  
+
+            </div>
+
+            <div class="col-md-2">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Unidad de medida:</strong></label>
+
+                            <input type="text" placeholder="U. de medida" class="form-control form-control-sm" disabled   #txtUnidadDeMedida >
+                                                            
+
+                    </div>  
+
+            </div>
+            
+            
+             <div class="col-md-2" hidden="hidden">                                 
+
+                    <div class="form-group">
+
+                            <label for=""><strong>Id Producto:</strong></label>
+
+                            <input type="text" placeholder="Id" class="form-control form-control-sm" name="txtidProducto"  id="txtidProducto" >
+                                                            
+
+                    </div>  
+
+            </div>
+
+            <div class="col-md-1 col-sm-3 mt-4">
+
+                <button  #btnAgregarProductos  class="btn btn-secondary btn-sm form-control" ><i class="fa fa-plus mr-2"></i> Agregar</button>
+            </div>
+            
+
+    </div>
+
+    <div class="row d-none">
+
+        <div class="col-md-1 col-sm-3">
+
+                <button  #btnAgregarProductos  class="btn btn-secondary btn-sm form-control" ><i class="fa fa-plus mr-2"></i> Agregar</button>
+        </div>
+        
+    </div>
+
+    <hr>
+
+
+    <div class="row">
+
+        <div class="col-12">
+
+
+                <div class="table-responsive" style="height: 280px;">
+
+                        <table class="table  table-sm table-striped " id="tblProductosCarrito">
+                                <thead style="background: #242A33; color: #D9EDF7;">
+                                  <tr class="text-center">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Catidad</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Opciones</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr class="text-center" style="cursor: pointer;"  >
+                    
+                                        <!-- 
+                                            <td >{{detalleComprobanteDePago.producto.idProducto}}</td>
+                                            <td >{{detalleComprobanteDePago.producto.descripcion}} </td>
+                                            <td >{{detalleComprobanteDePago.cantidadCompra}} </td>
+                                            <td >{{detalleComprobanteDePago.valorVenta}} </td>
+                                            <td>
+                                            <button    class="btn btn-warning btn-sm mr-1"><i class="fas fa-pen"></i></button>
+                                            <button    class="btn btn-danger btn-sm mr-1"><i class="fas fa-pen"></i></button>
+                                            </td>
+                                            -->
+                                    </tr>
+
+                                </tbody>
+                              </table>
+                </div>
+
+        </div>
+    
+    </div>
+
+    <hr>
+
+    <div class="row mb-3">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-6">
+
+                    <div class="form-inline">
+
+                            <label class="mr-2"><strong>Total sin IGV: </strong></label> 
+                            <input #txtTotalSinIgv  name="txtTotalSinIgv" type="text" class="form-control w-50 text-center" disabled>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-sm-3">
+
+                </div>
+                <div class="col-md-2  col-sm-3" >
+
+                    <button id="btnGuardarCompra"  class="float-right btn btn-secondary btn-sm form-control"><i class="fa fa-save mr-2"></i> Guardar</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
