@@ -1,9 +1,13 @@
 package com.example.Avatex_api.controller;
 
 import com.example.Avatex_api.entity.Pieza;
+import com.example.Avatex_api.entity.Producto;
 import com.example.Avatex_api.service.IPiezaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -26,12 +30,26 @@ public class PiezaRestController {
     public Pieza show(@PathVariable Long id) {
         return productoService.findPiezaByID(id);
     }
+    
+    @GetMapping("/pieza/pagina")
+	public ResponseEntity<?> listar(Pageable pageable) 
+	{
+		return ResponseEntity.ok().body(productoService.findAll(pageable));
+	}
 
-  /*  //ADMIN - USER
-    @GetMapping("/pieza/{nombre}")
-    public List<Pieza> findByName(@PathVariable String nombre) {
-        return productoService.findPiezaByName(nombre);
-    }*/
+    //ADMIN - USER
+    @GetMapping("/pieza/producto/{id}")
+    public ResponseEntity<?>  findByProducto(@PathVariable Long id,Pageable pageable) {
+    	Producto p=new Producto();
+    	p.setId(id);
+        return ResponseEntity.ok().body(productoService.findByProducto(p,pageable));
+    }
+    
+    //ADMIN - USER
+    @GetMapping("/pieza/color/{color}")
+    public ResponseEntity<?>  findByColor(@PathVariable String color,Pageable pageable) {
+        return ResponseEntity.ok().body(productoService.findByColor(color,pageable));
+    }
 
     //ADMIN
     @PostMapping("/pieza")

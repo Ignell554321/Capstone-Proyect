@@ -13,21 +13,17 @@ public class DetalleCompra {
 
     private String proveedor;
     private Date fecha;
-    private Double cantidad;
-    private Double subtotal;
     private Pieza pieza;
     @JoinColumn(name="compra_id")
     @ManyToOne
     private Compra compra;
 
-    public DetalleCompra(Long id, String proveedor, Date fecha, Pieza pieza, Compra compra, Double cantidad, Double subtotal) {
+    public DetalleCompra(Long id, String proveedor, Date fecha, Pieza pieza, Compra compra) {
         this.id = id;
         this.proveedor = proveedor;
         this.fecha = fecha;
         this.pieza = pieza;
         this.compra = compra;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
     }
 
     public DetalleCompra(){}
@@ -70,21 +66,5 @@ public class DetalleCompra {
 
     public void setCompra(Compra compra) {
         this.compra = compra;
-    }
-
-    public Double getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Double cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
     }
 }

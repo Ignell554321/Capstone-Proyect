@@ -7,6 +7,8 @@ import com.example.Avatex_api.entity.Producto;
 import com.example.Avatex_api.service.IPiezaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +40,25 @@ public class PiezaService implements IPiezaService {
     public Pieza save(Pieza pieza) {
         return piezaDao.save(pieza);
     }
+
+	@Override
+	public Page<Pieza> findAll(Pageable pageable) {
+
+		return piezaDao.findAll(pageable);
+	}
+
+	@Override
+	public Page<Pieza> findByProducto(Producto producto,Pageable pageable) {
+		// TODO Auto-generated method stub
+		return  piezaDao.findByProducto(producto,pageable);
+	}
+
+	@Override
+	public Page<Pieza> findByColor(String color, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return piezaDao.findByColor(color, pageable);
+	}
+
+
 
 }
