@@ -10,9 +10,6 @@ public class DetalleCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String proveedor;
-    private Date fecha;
     private Pieza pieza;
     private Double cantidad;
     private Double subTotal;
@@ -20,10 +17,8 @@ public class DetalleCompra {
     @ManyToOne
     private Compra compra;
 
-    public DetalleCompra(Long id, String proveedor, Date fecha, Pieza pieza, Compra compra, Double cantidad, Double subTotal) {
+    public DetalleCompra(Long id, Pieza pieza, Compra compra, Double cantidad, Double subTotal) {
         this.id = id;
-        this.proveedor = proveedor;
-        this.fecha = fecha;
         this.pieza = pieza;
         this.cantidad = cantidad;
         this.subTotal = subTotal;
@@ -38,22 +33,6 @@ public class DetalleCompra {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public Pieza getPieza() {
