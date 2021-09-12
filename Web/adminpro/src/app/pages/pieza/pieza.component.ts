@@ -219,16 +219,24 @@ export class PiezaComponent implements OnInit {
 
   public cargarModalProducto(){
 
+
     this.modalRef = this.modalService.show(ModalProductoComponent,  {
       initialState: {
         piezaComponent:this
+      }})
+
+      this.modalRef.content.response.subscribe((producto: ProductoModule) => {
+        this.frmPieza.get('producto')?.setValue(producto)
       }
-    });
+       
+    );
+
 
   }
 
   public nuevaPieza(){
     this.registro=true
+    this.limpiarFormulario()
   }
 
 

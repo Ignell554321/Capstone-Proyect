@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit,Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ProductoModule } from 'src/app/models/producto.module';
 import { ProductoService } from 'src/app/service/producto.service';
@@ -11,6 +11,8 @@ import { PiezaComponent } from '../pieza/pieza.component';
 })
 export class ModalProductoComponent implements OnInit {
 
+  @Output() response = new EventEmitter();
+
   constructor(public modalRef: BsModalRef, public service:ProductoService) { }
 
   public piezaComponent!: PiezaComponent;
@@ -21,13 +23,15 @@ export class ModalProductoComponent implements OnInit {
 
   seleccionarProducto(producto:ProductoModule){
     
-    this.piezaComponent.frmPieza.get('producto')?.setValue(producto)
+   // this.piezaComponent.frmPieza.get('producto')?.setValue(producto)
+    this.response.emit(producto)
     this.modalRef.hide()
   }
 
   seleccionarProductoDoubleClick(producto:ProductoModule){
     
-    this.piezaComponent.frmPieza.get('producto')?.setValue(producto)
+    //this.piezaComponent.frmPieza.get('producto')?.setValue(producto)
+    this.response.emit(producto)
     this.modalRef.hide();
     
   }

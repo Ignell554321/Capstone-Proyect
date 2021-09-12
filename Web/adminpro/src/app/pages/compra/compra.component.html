@@ -18,10 +18,10 @@
                             <thead>
                                 <tr>                                                        
                                     <th class="d-none">ID</th>
-                                    <th>Proveedor</th>
-                                    <th>Fecha</th>
-                                    <th>Num. Comp.</th>
-                                    <th>Opciones</th>
+                                    <th>PROVEEDOR</th>
+                                    <th>FECHA</th>
+                                    <th>NUMERO</th>
+                                    <th>OPCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -106,12 +106,12 @@
     <!-- INGRESAR - EDITAR-->
 
 
-<div class="container-fluid my-3" style="border:solid 1px #D9EDF7;">
+<div class="container-fluid " style="border:solid 1px #D9EDF7;">
   
     <div class="row " style="background: #D5D7D7 ; color:#5D7F9A;">
 
         <div class="col-12">
-               <i class="fa fa-windows  float-left" style="margin-top: 18px;">&nbsp; &nbsp; </i> <h3 style="margin-top: 15px;"><strong>Registrar Compra</strong> </h3> 
+               <i class="fa fa-windows  float-left" style="margin-top: 20px;">&nbsp; &nbsp; </i> <h3 style="margin-top: 15px;"><strong>Registrar Compra</strong> </h3> 
 
             <div class="float-right" style="margin-top: -40px;">
                 <i class="fa fa-arrow-left" (click)="cancelar()"></i>
@@ -124,13 +124,13 @@
 
     <div class="row pt-3">
 
-        <div class="col-md-1">
+        <div class="col-md-2">
 
             <div class="form-group ">
 
-                <label for=""><strong>Num. Comp.</strong></label>
+                <label for=""><strong>Numero</strong></label>
 
-                <input type="text" placeholder="Serie" id="txtSerie"  class="form-control form-control-sm" required="required">
+                <input type="text" placeholder="Numero" id="txtNumero"  class="form-control form-control-sm" required="required">
 
 
             </div>
@@ -143,27 +143,15 @@
 
                     <label for=""><strong>Proveedor</strong></label>
 
-                    <input type="text" placeholder="Serie" id="txtSerie"  class="form-control form-control-sm" required="required">
+                    <input type="text" placeholder="Proveedor" id="txtProveedor"  class="form-control form-control-sm" required="required">
 
 
                 </div>
 
         </div>
+
 
         <div class="col-md-2">
-
-                <div class="form-group">
-
-                    <label for="" ><strong>Numero</strong></label>
-
-                    <input type="text" placeholder="Numero" id="txtNumeroComprobante"  class="form-control form-control-sm" required="required">
-
-
-                </div>
-
-        </div>
-
-        <div class="col-md-3">
 
                 <div class="form-group">
 
@@ -176,90 +164,27 @@
 
         </div>
 
-        <div class="col-md-2">
-
-                <div class="form-group">
-
-                    <label for="" ><strong>Tipo de cambio</strong></label>
-
-                    <select class="form-control form-control-sm" id="cmbTipoDeCambio" >
-                            <option th:value="Soles">Soles</option>
-                            <option th:value="Dolares">Dolares</option>
-                    </select>
-
-
-                </div>
-
-        </div>
-
     </div>
+
+    <hr>
 
 
     <div class="row">
 
             <div class="col-md-3">                                 
 
-                    <div class="form-group">
+                <div class="form-group">
+                            
+                    <label><strong>Nombre</strong></label>
+                    <div class="input-group">
 
-                            <label for=""><strong>Ruc Proveedor:</strong></label>
-
-                            <div class="form-inline">
-
-                                    <input type="text" placeholder="Ruc " class="form-control form-control-sm w-50"   disabled id="txtRucProveedor" >
-                                    <button type="button" class="btn btn-sm btn-secondary ml-1"  ><i class="fa fa-search"></i></button>
-
-                            </div>                                 
-
-                    </div>  
-
-            </div>
-
-            <div class="col-md-5">                                 
-
-                    <div class="form-group">
-
-                            <label for=""><strong>Razon Social:</strong></label>
-
-                            <input type="text"   placeholder="Razon Social" class="form-control form-control-sm" disabled  id="txtRazonSocial" >
-                                                            
-
-                    </div>  
-
-            </div>
-
-            <div class="col-md-4">                                 
-
-                    <div class="form-group">
-
-                            <label for=""><strong>Direccion:</strong></label>
-
-                            <input type="text" placeholder="Direccion"  class="form-control form-control-sm" disabled  id="txtDireccion" >
-                                                            
-
-                    </div>  
-
-            </div>
-
-    </div>
-
-    <div class="row">
-
-            <div class="col-md-5">                                 
-
-                    <div class="form-group">
-
-                            <label for=""><strong>Producto:</strong></label>
-
-                            <div class="form-inline">
-
-                                    <input type="text" placeholder="Desripcion producto" class="form-control form-control-sm w-75" disabled #txtDescripcionProducto>
-                                    <button type="button"  class="btn btn-secondary btn-sm ml-2" >
-                                            <i class="fa fa-search"></i>
-                                    </button>
-
-                            </div>                                 
-
-                    </div>  
+                        <input readonly type="text" placeholder="Producto" class="form-control form-control-sm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-secondary " (click)="cargarModalProducto()"  type="button"><i class="fa fa-search"></i></button>
+                        </div>
+                        
+                    </div>
+                </div>
 
             </div>
     
@@ -290,19 +215,6 @@
 
             </div>
 
-            <div class="col-md-2">                                 
-
-                    <div class="form-group">
-
-                            <label for=""><strong>Unidad de medida:</strong></label>
-
-                            <input type="text" placeholder="U. de medida" class="form-control form-control-sm" disabled   #txtUnidadDeMedida >
-                                                            
-
-                    </div>  
-
-            </div>
-            
             
              <div class="col-md-2" hidden="hidden">                                 
 
@@ -317,9 +229,10 @@
 
             </div>
 
-            <div class="col-md-1 col-sm-3 mt-4">
+            <div class="col-md-1 col-sm-3" style="margin-top: 30px;">
 
-                <button  #btnAgregarProductos  class="btn btn-secondary btn-sm form-control" ><i class="fa fa-plus mr-2"></i> Agregar</button>
+                <button  #btnAgregarProductos  class="btn btn-secondary btn-sm" >&nbsp; <i class="fa fa-plus mr-2"></i> </button>
+
             </div>
             
 
@@ -348,10 +261,10 @@
                                 <thead style="background: #242A33; color: #D9EDF7;">
                                   <tr class="text-center">
                                     <th scope="col">ID</th>
-                                    <th scope="col">Descripcion</th>
-                                    <th scope="col">Catidad</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Opciones</th>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">CANTIDAD</th>
+                                    <th scope="col">PRECIO</th>
+                                    <th scope="col">OPCIONES</th>
                                   </tr>
                                 </thead>
                                 <tbody>
