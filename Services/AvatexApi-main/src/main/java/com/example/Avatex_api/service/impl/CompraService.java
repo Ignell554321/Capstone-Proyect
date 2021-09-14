@@ -51,7 +51,7 @@ public class CompraService implements ICompraService{
     }
 
     @Override
-    public Compra cancel(Long id) {
+    public Compra update(Long id) {
         Compra compra = new Compra();
         compra = compraDao.findById(id).orElse(null);
         return compraDao.save(compra);

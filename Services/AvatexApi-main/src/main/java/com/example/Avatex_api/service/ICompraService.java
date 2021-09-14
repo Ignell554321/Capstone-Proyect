@@ -14,5 +14,5 @@ public interface ICompraService {
     public List<Compra> findCompraByMes(String mes);
     public List<Compra> findCompraByProveedor(String proveedor);
     public Compra save(Compra compra);
-    public Compra cancel(Long id);
+    public Compra update(Long id);
 }

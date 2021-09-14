@@ -3,11 +3,7 @@ package com.example.Avatex_api.controller;
 import com.example.Avatex_api.entity.Compra;
 import com.example.Avatex_api.service.ICompraService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -42,6 +38,7 @@ public class CompraRestController {
     @GetMapping("/compras/:Proveedor")
     public List<Compra> findByProveedor(String proveedor){
         return compraService.findCompraByProveedor(proveedor);
+
     }*/
 
     @PostMapping("/compras")
@@ -49,16 +46,17 @@ public class CompraRestController {
         return  compraService.save(compra);
     }
 
-    //Actualizar a pagado
+    //Actualizar
     @PutMapping("/compras/{id}")
-    public Compra updateEstado(Long id){
-        return compraService.cancel(id);
+    public Compra update(Long id){
+        return compraService.update(id);
     }
 
-   /* @PutMapping("/compras/{id}")
-    public Compra cancel(Long id){
+    /*
+    @DeleteMapping("/compras/{id}")
+    public Compra delete(Long id){
         return compraService.cancel(id);
-    }*/
-
+    }
+    */
 
 }
