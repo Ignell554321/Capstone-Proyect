@@ -1,6 +1,9 @@
 package com.example.Avatex_api.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 @Entity
@@ -12,19 +15,35 @@ public class DetalleCompra {
     private Long id;
     private String nombreProducto;
     private Double cantidad;
+    private Double precio;
     private Double subTotal;
-    @JoinColumn(name="compra_id")
-    @ManyToOne
-    private Compra compra;
+    
 
-    public DetalleCompra(Long id, String nombreProducto, Compra compra, Double cantidad, Double subTotal) {
+    public DetalleCompra(Long id, String nombreProducto, Compra compra, Double cantidad, Double subTotal, Double precio) {
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;
         this.subTotal = subTotal;
-        this.compra = compra;
+        this.precio=precio;
     }
 
+	@Override
+	public boolean equals(Object obj){
+		
+		if(this==obj) {
+			return true;
+		}
+		
+		if(!(obj instanceof DetalleCompra)) {
+			return false;
+		}
+		
+		DetalleCompra a = (DetalleCompra) obj;
+		
+		return this.id!=null && this.id.equals(a.getId());
+		
+	}
+	
     public DetalleCompra(){}
 
     public Long getId() {
@@ -43,13 +62,6 @@ public class DetalleCompra {
         this.nombreProducto = nombreProducto;
     }
 
-    public Compra getCompra() {
-        return compra;
-    }
-
-    public void setCompra(Compra compra) {
-        this.compra = compra;
-    }
 
     public Double getCantidad() {
         return cantidad;
@@ -66,6 +78,16 @@ public class DetalleCompra {
     public void setSubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+    
+    
 }
 
 

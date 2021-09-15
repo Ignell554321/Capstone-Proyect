@@ -4,3 +4,18 @@
     -webkit-animation-fill-mode:both;
     animation-fill-mode:both
 }
+
+
+thead tr th { 
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #5A6268;
+    color: white;
+}
+
+.table-responsive { 
+    height:500px;
+}
+
+/*overflow:scroll;*/

@@ -1,7 +1,9 @@
 package com.example.Avatex_api.entity;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,28 +16,29 @@ public class Compra implements Serializable {
     private Long id;
 
     private String proveedor;
+    
+	@Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
+    
     private String numComprobante;
+    
     private Double montoTotal;
+    
     private Date fechaPago;
+    
     private String estado;
-    @Transient
+    
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DetalleCompra> detalleCompras;
+    
+    @PrePersist
+	public void prePersist() {
+		this.fechaRegistro=new Date();
+	}
 
-    public Compra(Long id, String proveedor, Date fechaRegistro, String numComprobante, Double montoTotal,
-                  Date fechaPago, String estado, List<DetalleCompra> detalleCompras) {
-        this.id = id;
-        this.proveedor = proveedor;
-        this.fechaRegistro = fechaRegistro;
-        this.numComprobante = numComprobante;
-        this.montoTotal = montoTotal;
-        this.fechaPago = fechaPago;
-        this.estado = estado;
-        this.detalleCompras = detalleCompras;
+    public Compra(){
+    	 this.detalleCompras = new ArrayList<>();
     }
-
-    public Compra(){}
 
     public Long getId() {
         return id;

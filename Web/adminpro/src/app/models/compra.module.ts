@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DetalleCompraModule } from './detalle-compra.module';
 
 @NgModule({
   declarations: [],
@@ -12,16 +13,21 @@ export class CompraModule {
 
   public id:number
   public proveedor:String
-  public fecha:Date
+  public fechaRegistro:Date
+  public fechaPago:Date | undefined
   public numComprobante:String
-  public detalleCompras:String[] 
+  public estado:String
+  public montoTotal:number
+  public detalleCompras:DetalleCompraModule[] 
 
   constructor(){
     this.id=0
     this.proveedor=''
-    this.fecha=new Date
+    this.fechaRegistro=new Date
+    this.montoTotal=0
     this.numComprobante=''
     this.detalleCompras=[]
+    this.estado=''
   }
 
 

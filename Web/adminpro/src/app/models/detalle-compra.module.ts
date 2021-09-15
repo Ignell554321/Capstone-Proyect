@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PiezaModule } from './pieza.module';
 
 
 
@@ -9,4 +10,23 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class DetalleCompraModule { }
+export class DetalleCompraModule { 
+
+ 
+    public id:number;
+    public nombreProducto:String;
+    public cantidad:number;
+    public subTotal:number;
+    public precio:number;
+
+    constructor(){
+
+      this.id=0
+      this.nombreProducto=''
+      this.cantidad=0
+      this.subTotal=0
+      this.precio=0
+
+    }
+
+}
