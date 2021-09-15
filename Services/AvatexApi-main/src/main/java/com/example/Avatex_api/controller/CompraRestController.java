@@ -52,6 +52,7 @@ public class CompraRestController {
     @PostMapping(value = "/addDetalle" )
 	public  ResponseEntity<?> addDetail(@RequestBody DetalleCompra detalle)
 	{
+    	detalle.calcularSubTotal();
 		verificarDetalleRepetido(detalle);
 		return  ResponseEntity.ok(detalle);
 	}

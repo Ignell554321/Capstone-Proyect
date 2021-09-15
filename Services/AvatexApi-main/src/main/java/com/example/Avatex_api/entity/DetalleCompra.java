@@ -44,6 +44,10 @@ public class DetalleCompra {
 		
 	}
 	
+	public void calcularSubTotal() {
+		this.subTotal= this.cantidad * this.precio;
+	}
+	
     public DetalleCompra(){}
 
     public Long getId() {

@@ -25,11 +25,11 @@ export class CompraComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private modalService: BsModalService, public service:CompraService) { 
 
     this.frmCompra= this.formBuilder.group({
-      id: [''],
+      id: 0,
       proveedor: ['',Validators.required],
       fechaRegistro: [new Date],
       fechaPago: ['',Validators.required],
-      estado: ['CREADO',Validators.required],
+      estado: ['CREADO'],
       montoTotal: [0,Validators.required],
       numComprobante: ['',Validators.required],
       detalleCompras: this.formBuilder.array([])
@@ -60,8 +60,24 @@ export class CompraComponent implements OnInit {
     console.log(this.frmCompra.value)
     if(this.frmCompra.valid){
 
-      
+      this.service.guardar(this.frmCompra.value).subscribe(res=>{
 
+        console.log(res)
+
+        Swal.fire('Exito', 'Compra Registrada Correctamente!', 'success').then((result)=>{ if (result.isConfirmed) {
+
+          //this.obtenerPaginado(this.page)
+           this.registro=false  
+           //this.limpiarFormulario()
+         
+         }})
+
+      })
+
+     
+
+    }else{
+      Swal.fire('Error', 'Debes completar el formulario. Verifique por favor.', 'error')
     }
 
   }
@@ -82,10 +98,8 @@ export class CompraComponent implements OnInit {
     })
 
      this.detalleCompras.push(filtroFormGroup)
-
     }
 
-    
    });
   }
 
@@ -106,11 +120,28 @@ export class CompraComponent implements OnInit {
 
   }
 
+  private limpiarFormularioCompra(){
+    
+    this.frmCompra.reset(
+      {
+        id: 0,
+        proveedor: '',
+        fechaRegistro: new Date,
+        fechaPago: '',
+        estado: 'CREADO',
+        montoTotal:0,
+        numComprobante:'',
+        detalleCompras:[]
+      }
+    )
+
+  }
+
   private limpiarFormularioDetalles(){
     
     this.DetalleCompra.reset(
       {
-        id: '',
+        id: 0,
         nombreProducto: '',
         cantidad: 0,
         precio: 0,
@@ -123,6 +154,7 @@ export class CompraComponent implements OnInit {
   public nuevaCompra(){
     this.registro=true;
     this.limpiarDetalles()
+    this.limpiarFormularioCompra()
 
   }
 
@@ -134,6 +166,8 @@ export class CompraComponent implements OnInit {
   public limpiarDetalles(){
 
     this.service.limpiarDetalles().subscribe(res=>{
+
+      this.service.detallesCompra=[]
 
       console.log(res)
 

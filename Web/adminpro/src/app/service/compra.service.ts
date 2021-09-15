@@ -3,6 +3,7 @@ import { CompraModule } from '../models/compra.module';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { DetalleCompraModule } from '../models/detalle-compra.module';
 import { Observable } from 'rxjs';
+import { CompraComponent } from '../pages/compra/compra.component';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class CompraService {
 
   public agregarDetalle(detalle:DetalleCompraModule): Observable<any>{
     return this.httpClient.post(`${this.URL_API}/addDetalle`,detalle);
+  }
+
+  public guardar(compra:CompraComponent): Observable<any>{
+    return this.httpClient.post(this.URL_API,compra);
   }
 
   public limpiarDetalles(){
