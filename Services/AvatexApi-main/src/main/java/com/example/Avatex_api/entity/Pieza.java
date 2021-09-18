@@ -47,7 +47,7 @@ public class Pieza implements Serializable {
     }
 
     public String getColor() {
-        return color;
+        return color.toUpperCase();
     }
 
     public void setColor(String color) {
@@ -55,7 +55,7 @@ public class Pieza implements Serializable {
     }
 
     public String getUbicacion() {
-        return ubicacion;
+        return ubicacion.toUpperCase();
     }
 
     public void setUbicacion(String ubicacion) {

@@ -114,6 +114,7 @@ export class PiezaComponent implements OnInit {
 
   public onChangeMostrar(tamanio:any) {
 
+    this.page=1
     this.tamanio= Number(tamanio)
     this.obtenerPaginado(this.page)
 
@@ -140,9 +141,6 @@ export class PiezaComponent implements OnInit {
           }
           $('#loading').fadeOut('slow')
         });
-
-    
-
 
   }
 

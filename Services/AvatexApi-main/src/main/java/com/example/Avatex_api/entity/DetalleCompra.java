@@ -13,6 +13,7 @@ public class DetalleCompra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long producto_id;
     private String nombreProducto;
     private Double cantidad;
     private Double precio;
@@ -44,6 +45,16 @@ public class DetalleCompra {
 		
 	}
 	
+	
+	
+	public Long getProducto_id() {
+		return producto_id;
+	}
+
+	public void setProducto_id(Long producto_id) {
+		this.producto_id = producto_id;
+	}
+
 	public void calcularSubTotal() {
 		this.subTotal= this.cantidad * this.precio;
 	}

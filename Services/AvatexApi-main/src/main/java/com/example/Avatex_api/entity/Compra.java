@@ -2,6 +2,8 @@ package com.example.Avatex_api.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,12 +26,18 @@ public class Compra implements Serializable {
     
     private Double montoTotal;
     
+    //@JsonFormat(pattern="dd-MM-yyyy")
     private Date fechaPago;
     
     private String estado;
     
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DetalleCompra> detalleCompras;
+    
+    
+    public void removeDetalle(DetalleCompra detalle){
+		this.detalleCompras.remove(detalle);
+	}
     
     @PrePersist
 	public void prePersist() {
@@ -49,11 +57,11 @@ public class Compra implements Serializable {
     }
 
     public String getProveedor() {
-        return proveedor;
+        return proveedor.toUpperCase();
     }
 
     public void setProveedor(String proveedor) {
-        this.proveedor = proveedor;
+        this.proveedor = proveedor.toUpperCase();
     }
 
     public Date getFechaRegistro() {

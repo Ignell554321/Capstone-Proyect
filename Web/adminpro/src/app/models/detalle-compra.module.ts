@@ -14,6 +14,7 @@ export class DetalleCompraModule {
 
  
     public id:number;
+    public producto_id:number;
     public nombreProducto:String;
     public cantidad:number;
     public subTotal:number;
@@ -22,6 +23,7 @@ export class DetalleCompraModule {
     constructor(){
 
       this.id=0
+      this.producto_id=0
       this.nombreProducto=''
       this.cantidad=0
       this.subTotal=0

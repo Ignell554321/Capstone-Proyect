@@ -6,6 +6,8 @@ import com.example.Avatex_api.entity.Compra;
 import com.example.Avatex_api.service.ICompraService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -56,4 +58,10 @@ public class CompraService implements ICompraService{
         compra = compraDao.findById(id).orElse(null);
         return compraDao.save(compra);
     }
+
+	@Override
+	public Page<Compra> findAll(Pageable pageable) {
+
+		return compraDao.findAll(pageable);
+	}
 }

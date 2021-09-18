@@ -32,7 +32,7 @@ public class Producto implements Serializable {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.toUpperCase();
     }
 
     public void setNombre(String nombre) {
@@ -40,7 +40,7 @@ public class Producto implements Serializable {
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return descripcion.toUpperCase();
     }
 
     public void setDescripcion(String descripcion) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CompraModule } from '../models/compra.module';
-import { HttpClient, HttpHeaders} from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { DetalleCompraModule } from '../models/detalle-compra.module';
 import { Observable } from 'rxjs';
 import { CompraComponent } from '../pages/compra/compra.component';
@@ -10,7 +10,7 @@ import { CompraComponent } from '../pages/compra/compra.component';
 })
 export class CompraService {
 
-  readonly URL_API='http://localhost:8081/compra/';
+  readonly URL_API='http://localhost:8081/compra';
 
   public listaCompras:CompraModule[]=[]
   public detallesCompra:DetalleCompraModule[]=[]
@@ -28,6 +28,30 @@ export class CompraService {
 
   }
 
+  public listar(): Observable<any>{
+
+    return this.httpClient.get(this.URL_API);
+
+  }
+
+  
+  public findById(id:number): Observable<any>{
+
+    return this.httpClient.get(this.URL_API+"/"+id);
+
+  }
+
+  public listarPaginas(pagina: number, tamaño: number): Observable<any>{
+    const params = new HttpParams()
+    .set('page', pagina)
+    .set('size', tamaño);
+    return this.httpClient.get<any>(`${this.URL_API}/pagina`, {params: params});
+  }
+
+  public eliminarDetalle(detalle:DetalleCompraModule): Observable<any>{
+    return this.httpClient.post(`${this.URL_API}/eliminarDetalle`,detalle);
+  }
+
   public agregarDetalle(detalle:DetalleCompraModule): Observable<any>{
     return this.httpClient.post(`${this.URL_API}/addDetalle`,detalle);
   }
@@ -39,5 +63,7 @@ export class CompraService {
   public limpiarDetalles(){
     return this.httpClient.get(`${this.URL_API}/limpiarDetalles`);
   }
+
+
   
 }
