@@ -1,0 +1,42 @@
+package com.example.Avatex_api.swagger;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+	
+    @Bean
+    public Docket apiDocket() {
+
+ 
+
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(getApiInfo()).select()
+                .apis(RequestHandlerSelectors.basePackage("com.example.Avatex_api.controller"))
+                // .paths(PathSelectors.ant("/products/*"))
+                .paths(PathSelectors.any()).build();
+    }
+
+    private ApiInfo getApiInfo() {
+		
+		return new ApiInfoBuilder()
+				.title("SISTEMA CONTROL DE INVENTARIO AVATEX")
+				.contact(new Contact("AVATEX", "WWW.AVATEX.COM", "TELEFONO: 044-558535"))
+				.description("DEVELOPER MIGUEL GUEVARA")
+				.version("V1.0.0")
+				.build();
+		
+	}
+
+}

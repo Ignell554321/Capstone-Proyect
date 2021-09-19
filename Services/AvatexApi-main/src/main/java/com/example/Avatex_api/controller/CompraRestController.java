@@ -2,6 +2,7 @@ package com.example.Avatex_api.controller;
 
 import com.example.Avatex_api.entity.Compra;
 import com.example.Avatex_api.entity.DetalleCompra;
+import com.example.Avatex_api.entity.Producto;
 import com.example.Avatex_api.service.ICompraService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +44,20 @@ public class CompraRestController {
  		return ResponseEntity.ok().body(compraService.findAll(pageable));
  	}
     
+    @GetMapping("/pagina/{estado}")
+ 	public ResponseEntity<?> listarPorEstado(@PathVariable("estado") String estado,Pageable pageable) 
+ 	{
+ 		return ResponseEntity.ok().body(compraService.findByEstado(estado,pageable));
+ 	}
+    
+  //ADMIN 
+    @GetMapping("/fechaPago/{fecha}")
+    public ResponseEntity<?>  findByProducto(@PathVariable("fecha") String fecha,Pageable pageable) {
+
+    	return ResponseEntity.ok().body(compraService.findByFechaPagoAndEstado(fecha,pageable));  
+
+    }
+    
 	@PostMapping("/eliminarDetalle")
 	public ResponseEntity<?> eliminarDetalle(@RequestBody DetalleCompra detalleCompra) throws JsonParseException,IOException{
 		
@@ -58,6 +75,18 @@ public class CompraRestController {
 		listaDetalle.remove(indice);
 		
 		return ResponseEntity.ok().body(listaDetalle);
+	}
+	
+	@DeleteMapping("/eliminar/{id}")
+	public ResponseEntity<?> eliminar(@PathVariable("id") Long id) throws JsonParseException,IOException{
+		
+		Compra compra = compraService.findCompraByID(id);
+		if (null == compra) {
+			return ResponseEntity.notFound().build();
+		}
+		compra = compraService.deleteCompra(compra);
+		return ResponseEntity.ok(compra);
+	
 	}
 
     @GetMapping("/{id}")

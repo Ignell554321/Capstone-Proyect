@@ -20,7 +20,7 @@ public class DetalleCompra {
     private Double subTotal;
     
 
-    public DetalleCompra(Long id, String nombreProducto, Compra compra, Double cantidad, Double subTotal, Double precio) {
+    public DetalleCompra(Long id, String nombreProducto, Double cantidad, Double subTotal, Double precio) {
         this.id = id;
         this.nombreProducto = nombreProducto;
         this.cantidad = cantidad;

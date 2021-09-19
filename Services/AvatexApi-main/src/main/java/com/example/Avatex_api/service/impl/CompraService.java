@@ -4,6 +4,7 @@ import com.example.Avatex_api.dao.IComprasDao;
 import com.example.Avatex_api.dao.IPiezaDao;
 import com.example.Avatex_api.entity.Compra;
 import com.example.Avatex_api.service.ICompraService;
+import com.example.MSCustomer.bean.Customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,4 +65,28 @@ public class CompraService implements ICompraService{
 
 		return compraDao.findAll(pageable);
 	}
+
+	@Override
+	public Page<Compra> findByFechaPagoAndEstado(String fechaPago, Pageable pageable) {
+
+		return compraDao.findByFechaPagoAndEstado(fechaPago,"CREADO", pageable);
+	}
+
+	@Override
+	public Page<Compra> findByEstado(String estado, Pageable pageable) {
+
+		return compraDao.findByEstado(estado, pageable);
+	}
+
+	@Override
+	public Compra deleteCompra(Compra compra) {
+
+		Compra compraDB = findCompraByID(compra.getId());
+		if (compraDB == null) {
+			return null;
+		}
+		compra.setEstado("ELIMINADO");
+		return compraDao.save(compra);
+	}
+	
 }

@@ -1,23 +1,15 @@
 package com.example.Avatex_api.dao;
 
 import com.example.Avatex_api.entity.Compra;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
-
-import java.util.Date;
-import java.util.List;
-
 public interface IComprasDao extends PagingAndSortingRepository<Compra,Long> {
-    /*
-    @Query(value = "SELECT * FROM compras c WHERE c.fechaPago = :fechaPago", nativeQuery = true)
-    List<Compra> findByFechaPago(@Param("fechaPago") Date fechaPago);
+  
 
-     */
-    /*
-    List<Compra> findByFechaPago(Date fechaPago);
-    List<Compra> findByMes(String mes);
-    List<Compra> findByProveedor(String proveedor);
-*/
+	@Query(nativeQuery = true, value="select * from compras where fecha_pago=?1 and estado=?2")
+	public Page<Compra> findByFechaPagoAndEstado(String fechaPago, String estado,Pageable pageable);
+	
+	public Page<Compra> findByEstado(String estado,Pageable pageable);
 }

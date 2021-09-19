@@ -20,7 +20,7 @@ public class DetalleVenta implements Serializable{
 	private double precio_venta;
 	private double subTotal;
 	
-	
+
 	public double getPrecio_venta() {
 		return precio_venta;
 	}

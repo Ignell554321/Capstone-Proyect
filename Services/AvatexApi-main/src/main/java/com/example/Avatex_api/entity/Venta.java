@@ -25,10 +25,11 @@ public class Venta implements Serializable{
 	private Long id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
+    private String cliente;
 	private Date fechaVenta;
 	private double montoTotal;
 	private Usuario usuario;
-	 private String estado;
+	private String estado;
 	    
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DetalleVenta> detalleVentas;
@@ -38,6 +39,27 @@ public class Venta implements Serializable{
    		this.fechaRegistro=new Date();
    	}
     
+    
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+
+	public String getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(String cliente) {
+		this.cliente = cliente;
+	}
+
+
 	public String getEstado() {
 		return estado;
 	}
