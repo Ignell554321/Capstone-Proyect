@@ -4,7 +4,6 @@ import com.example.Avatex_api.dao.IComprasDao;
 import com.example.Avatex_api.dao.IPiezaDao;
 import com.example.Avatex_api.entity.Compra;
 import com.example.Avatex_api.service.ICompraService;
-import com.example.MSCustomer.bean.Customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
