@@ -44,13 +44,14 @@ public class CompraRestController {
  		return ResponseEntity.ok().body(compraService.findAll(pageable));
  	}
     
+    //PAGINADO VALE
     @GetMapping("/pagina/{estado}")
  	public ResponseEntity<?> listarPorEstado(@PathVariable("estado") String estado,Pageable pageable) 
  	{
  		return ResponseEntity.ok().body(compraService.findByEstado(estado,pageable));
  	}
     
-  //ADMIN 
+  //ADMIN  VALE
     @GetMapping("/fechaPago/{fecha}")
     public ResponseEntity<?>  findByProducto(@PathVariable("fecha") String fecha,Pageable pageable) {
 
@@ -58,6 +59,7 @@ public class CompraRestController {
 
     }
     
+    //VALE
 	@PostMapping("/eliminarDetalle")
 	public ResponseEntity<?> eliminarDetalle(@RequestBody DetalleCompra detalleCompra) throws JsonParseException,IOException{
 		
@@ -77,6 +79,7 @@ public class CompraRestController {
 		return ResponseEntity.ok().body(listaDetalle);
 	}
 	
+	//VALE
 	@DeleteMapping("/eliminar/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable("id") Long id) throws JsonParseException,IOException{
 		
@@ -89,6 +92,7 @@ public class CompraRestController {
 	
 	}
 
+	//VALE
     @GetMapping("/{id}")
     public Compra findById(@PathVariable("id") Long id){
     	
@@ -97,7 +101,7 @@ public class CompraRestController {
     	return c;
     }
     
-
+    //VALE
     @RequestMapping(value= {"/limpiarDetalles"},method=RequestMethod.GET)
 	public ResponseEntity<?> limpiarDetalles() throws JsonProcessingException, ParseException {
 	
@@ -105,12 +109,14 @@ public class CompraRestController {
 		return ResponseEntity.ok(listaDetalle);
 	}
     
+    //VALE
     @RequestMapping(value= {"/listarDetalles"},method=RequestMethod.GET)
 	public ResponseEntity<?> listarDetalles() throws JsonProcessingException, ParseException {
 
     	return ResponseEntity.ok().body(listaDetalle);
 	}
     
+    //VALE
     @PostMapping(value = "/addDetalle" )
 	public  ResponseEntity<?> addDetail(@RequestBody DetalleCompra detalle)
 	{
@@ -119,6 +125,7 @@ public class CompraRestController {
 		return  ResponseEntity.ok(detalle);
 	}
 	
+    //VALE
 	private void verificarDetalleRepetido(DetalleCompra detalle)
 	{
 		boolean existe=false;
@@ -145,12 +152,14 @@ public class CompraRestController {
 		
 	}
 
+	//VALE
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Compra compra){
     	
         return  ResponseEntity.ok(compraService.save(compra));
     }
 
+    //VALE
     @PutMapping("/{id}")
     public Compra update(Long id){
         return compraService.update(id);

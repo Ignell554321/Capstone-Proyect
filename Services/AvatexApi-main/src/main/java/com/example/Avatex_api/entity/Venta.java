@@ -25,8 +25,6 @@ public class Venta implements Serializable{
 	private Long id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
-    private String cliente;
-	private Date fechaVenta;
 	private double montoTotal;
 	private Usuario usuario;
 	private String estado;
@@ -50,16 +48,6 @@ public class Venta implements Serializable{
 	}
 
 
-	public String getCliente() {
-		return cliente;
-	}
-
-
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
-	}
-
-
 	public String getEstado() {
 		return estado;
 	}
@@ -78,12 +66,7 @@ public class Venta implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getFechaVenta() {
-		return fechaVenta;
-	}
-	public void setFechaVenta(Date fechaVenta) {
-		this.fechaVenta = fechaVenta;
-	}
+
 	public double getMontoTotal() {
 		return montoTotal;
 	}
