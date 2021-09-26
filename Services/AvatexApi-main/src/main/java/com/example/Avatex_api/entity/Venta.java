@@ -1,52 +1,53 @@
 package com.example.Avatex_api.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="ventas")
 public class Venta implements Serializable{
 	
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date fechaRegistro;
 	private double montoTotal;
-	private Usuario usuario;
 	private String estado;
-	    
+	@ManyToOne
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
+	@Transient
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DetalleVenta> detalleVentas;
-    
-    @PrePersist
-   	public void prePersist() {
-   		this.fechaRegistro=new Date();
-   	}
-    
-    
+
+	public void setCurrentDate() {
+		this.fechaRegistro=new Date();
+	}
+
+/*
+
 	public Date getFechaRegistro() {
 		return fechaRegistro;
 	}
 
-
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
 	}
-
 
 	public String getEstado() {
 		return estado;
@@ -79,6 +80,6 @@ public class Venta implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+	*/
 	
 }

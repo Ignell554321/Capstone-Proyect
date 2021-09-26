@@ -1,24 +1,21 @@
 package com.example.Avatex_api.controller;
 
+import com.example.Avatex_api.dto.common.AnioMesRequestDto;
+import com.example.Avatex_api.dto.compra.ProveedorRequestDto;
 import com.example.Avatex_api.entity.Compra;
 import com.example.Avatex_api.entity.DetalleCompra;
-import com.example.Avatex_api.entity.Producto;
 import com.example.Avatex_api.service.ICompraService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.ElementCollection;
 
@@ -43,7 +40,21 @@ public class CompraRestController {
  	{
  		return ResponseEntity.ok().body(compraService.findAll(pageable));
  	}
-    
+
+	//PAGINADO VALE
+	@PostMapping("/search/mes")
+	public ResponseEntity<?> listarPorMes(@RequestBody AnioMesRequestDto requestDto, Pageable pageable)
+	{
+		return ResponseEntity.ok().body(compraService.findByMonth(requestDto,pageable));
+	}
+
+	//PAGINADO VALE
+	@PostMapping("/search/proveedor")
+	public ResponseEntity<?> listarPorProveedor(@RequestBody ProveedorRequestDto requestDto, Pageable pageable)
+	{
+		return ResponseEntity.ok().body(compraService.findByProveedor(requestDto,pageable));
+	}
+
     //PAGINADO VALE
     @GetMapping("/pagina/{estado}")
  	public ResponseEntity<?> listarPorEstado(@PathVariable("estado") String estado,Pageable pageable) 
@@ -68,9 +79,7 @@ public class CompraRestController {
 		for(DetalleCompra detalle:listaDetalle)
 		{
 			if (detalle.getProducto_id()==detalleCompra.getProducto_id()){
-			
             	indice=cont;
-            	
             }
 			cont++;
 		}
@@ -82,13 +91,8 @@ public class CompraRestController {
 	//VALE
 	@DeleteMapping("/eliminar/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable("id") Long id) throws JsonParseException,IOException{
-		
-		Compra compra = compraService.findCompraByID(id);
-		if (null == compra) {
-			return ResponseEntity.notFound().build();
-		}
-		compra = compraService.deleteCompra(compra);
-		return ResponseEntity.ok(compra);
+
+		return ResponseEntity.ok(compraService.anularCompra(id));
 	
 	}
 
@@ -159,11 +163,13 @@ public class CompraRestController {
         return  ResponseEntity.ok(compraService.save(compra));
     }
 
-    //VALE
+    //No VALE
+	/*
     @PutMapping("/{id}")
     public Compra update(Long id){
         return compraService.update(id);
     }
+    */
 
 
 }

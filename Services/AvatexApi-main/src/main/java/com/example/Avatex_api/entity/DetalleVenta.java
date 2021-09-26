@@ -1,13 +1,21 @@
 package com.example.Avatex_api.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="detalleventas")
 public class DetalleVenta implements Serializable{
 	
     private static final long serialVersionUID = 1L;
@@ -19,8 +27,11 @@ public class DetalleVenta implements Serializable{
 	private int producto_id;
 	private double precio_venta;
 	private double subTotal;
+	@ManyToOne
+	@JoinColumn(name="venta_id")
+	private Venta venta;
 	
-
+/*
 	public double getPrecio_venta() {
 		return precio_venta;
 	}
@@ -57,7 +68,14 @@ public class DetalleVenta implements Serializable{
 	public void setSubTotal(double subTotal) {
 		this.subTotal = subTotal;
 	}
-	
-	
 
+	public Venta getVenta() {
+		return venta;
+	}
+
+	public void setVenta(Venta venta) {
+		this.venta = venta;
+	}
+
+ */
 }
