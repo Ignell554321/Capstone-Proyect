@@ -22,11 +22,12 @@ public class DetalleVenta implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombreProducto;
+	private String producto;
 	private double metraje;
-	private int producto_id;
-	private double precio_venta;
+	private int idProducto;
+	private double precio;
 	private double subTotal;
+	
 	@ManyToOne
 	@JoinColumn(name="venta_id")
 	private Venta venta;

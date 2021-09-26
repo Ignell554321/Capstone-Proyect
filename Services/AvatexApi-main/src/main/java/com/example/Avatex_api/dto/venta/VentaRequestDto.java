@@ -3,6 +3,7 @@ package com.example.Avatex_api.dto.venta;
 import com.example.Avatex_api.entity.DetalleVenta;
 import com.example.Avatex_api.entity.Usuario;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,10 @@ public class VentaRequestDto {
     private String username;
 
     private List<DetalleVentaRequestType> listaDetalles;
+    
+    public VentaRequestDto() {
+    	this.listaDetalles=new ArrayList<>();
+    }
 
     public double getMontoTotal() {
         return montoTotal;

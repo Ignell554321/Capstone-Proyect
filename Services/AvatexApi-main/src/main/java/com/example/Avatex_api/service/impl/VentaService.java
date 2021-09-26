@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,12 +45,35 @@ public class VentaService implements IVentaService {
 
     @Override
     public Page<Venta> findAll(Pageable pageable) {
-        return ventaDao.findAll(pageable);
+        return ventaDao.findByEstado("CREADO",pageable);
     }
 
     @Override
     public Venta findVentaByID(Long id) {
-        return ventaDao.findById(id).orElse(null);
+    	
+    	Venta entity=ventaDao.findById(id).orElse(null);
+    	return entity;
+    	/*VentaResponseDto response=new VentaResponseDto();
+    	VentaRequestDto requestDto=new VentaRequestDto();
+    	Venta entity=ventaDao.findById(id).orElse(null);
+    	
+    	for (DetalleVenta detalle : entity.getDetalleVentas()) {
+    		DetalleVentaRequestType detalleVenta=new DetalleVentaRequestType();
+			detalleVenta.setIdProducto(detalle.getIdProducto());
+			detalleVenta.setMetraje(detalle.getMetraje());
+			detalleVenta.setPrecio(detalle.getPrecio());
+			detalleVenta.setProducto(detalle.getProducto());
+			detalleVenta.setSubtotal(detalle.getSubTotal());
+			requestDto.getListaDetalles().add(detalleVenta);
+		}
+    	try {
+    		response = setVentaResponse(entity);
+			response.setDetalleVentas(guardarDetallesVenta(requestDto,entity));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return response;*/
     }
 
     @Override
@@ -134,11 +158,11 @@ public class VentaService implements IVentaService {
     private DetalleVenta setDetalleVentaRequest (DetalleVentaRequestType detalleRequest, Venta venta){
 
         DetalleVenta detalleVenta = new DetalleVenta();
-        detalleVenta.setPrecio_venta(detalleRequest.getPrecio());
+        detalleVenta.setPrecio(detalleRequest.getPrecio());
         detalleVenta.setMetraje(detalleRequest.getMetraje());
-        detalleVenta.setNombreProducto(detalleRequest.getProducto());
+        detalleVenta.setProducto(detalleRequest.getProducto());
         detalleVenta.setSubTotal(detalleRequest.getSubtotal());
-        detalleVenta.setProducto_id(detalleRequest.getIdProducto());
+        detalleVenta.setIdProducto(detalleRequest.getIdProducto());
         detalleVenta.setVenta(venta);
         return detalleVenta;
     }
@@ -148,10 +172,10 @@ public class VentaService implements IVentaService {
         DetalleVentaResponseType response = new DetalleVentaResponseType();
         response.setId(det.getId());
         response.setMetraje(det.getMetraje());
-        response.setNombreProducto(det.getNombreProducto());
+        response.setProducto(det.getProducto());
         response.setSubTotal(det.getSubTotal());
-        response.setPrecio(det.getPrecio_venta());
-        response.setIdProducto(det.getProducto_id());
+        response.setPrecio(det.getPrecio());
+        response.setIdProducto(det.getIdProducto());
         return response;
     }
 

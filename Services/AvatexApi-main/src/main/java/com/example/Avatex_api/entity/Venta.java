@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import javax.persistence.*;
 @Entity
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @Table(name="ventas")
 public class Venta implements Serializable{
@@ -38,6 +38,10 @@ public class Venta implements Serializable{
 	public void setCurrentDate() {
 		this.fechaRegistro=new Date();
 	}
+	
+	 public Venta(){
+    	 this.detalleVentas=new ArrayList<>();
+    }
 
 /*
 

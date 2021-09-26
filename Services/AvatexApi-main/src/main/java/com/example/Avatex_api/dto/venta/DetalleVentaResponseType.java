@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class DetalleVentaResponseType {
 
     private Long id;
-    private String nombreProducto;
+    private String producto;
     private double metraje;
     private int idProducto;
     private double precio;
