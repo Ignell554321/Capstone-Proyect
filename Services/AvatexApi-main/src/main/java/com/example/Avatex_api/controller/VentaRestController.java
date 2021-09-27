@@ -60,7 +60,7 @@ public class VentaRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") Long id){
+    public ResponseEntity<?> obtenerXId(@PathVariable("id") Long id){
     	
     	return ResponseEntity.ok(ventaService.findVentaByID(id));
     }

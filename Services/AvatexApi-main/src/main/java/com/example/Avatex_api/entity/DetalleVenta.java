@@ -27,12 +27,12 @@ public class DetalleVenta implements Serializable{
 	private int idProducto;
 	private double precio;
 	private double subTotal;
-	
+/*
 	@ManyToOne
 	@JoinColumn(name="venta_id")
 	private Venta venta;
 	
-/*
+
 	public double getPrecio_venta() {
 		return precio_venta;
 	}

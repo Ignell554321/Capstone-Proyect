@@ -49,31 +49,14 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public Venta findVentaByID(Long id) {
-    	
-    	Venta entity=ventaDao.findById(id).orElse(null);
-    	return entity;
-    	/*VentaResponseDto response=new VentaResponseDto();
-    	VentaRequestDto requestDto=new VentaRequestDto();
-    	Venta entity=ventaDao.findById(id).orElse(null);
-    	
-    	for (DetalleVenta detalle : entity.getDetalleVentas()) {
-    		DetalleVentaRequestType detalleVenta=new DetalleVentaRequestType();
-			detalleVenta.setIdProducto(detalle.getIdProducto());
-			detalleVenta.setMetraje(detalle.getMetraje());
-			detalleVenta.setPrecio(detalle.getPrecio());
-			detalleVenta.setProducto(detalle.getProducto());
-			detalleVenta.setSubtotal(detalle.getSubTotal());
-			requestDto.getListaDetalles().add(detalleVenta);
-		}
-    	try {
-    		response = setVentaResponse(entity);
-			response.setDetalleVentas(guardarDetallesVenta(requestDto,entity));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        return response;*/
+    public VentaResponseDto findVentaByID(Long id) {
+
+        VentaResponseDto response=new VentaResponseDto();
+    	Venta venta=ventaDao.findById(id).orElse(null);
+        if(venta != null){
+            response = setVentaResponse(venta);
+        }
+    	return response;
     }
 
     @Override
@@ -103,8 +86,16 @@ public class VentaService implements IVentaService {
                 venta.setEstado("CREADO");
                 Usuario user = usuarioDao.findByUsername(requestDto.getUsername());
                 venta.setUsuario(user);
+
+                //NUEVO CODIGO
+                List<DetalleVenta> lista = new ArrayList<>();
+                log.info("GUARDANDO DETALLES : ");
+                for(DetalleVentaRequestType detalleRequest: requestDto.getListaDetalles()){
+                    DetalleVenta det = setDetalleVentaRequest(detalleRequest);
+                    lista.add(det);
+                }
+                venta.setDetalleVentas(lista);
                 response = setVentaResponse(ventaDao.save(venta));
-                response.setDetalleVentas(guardarDetallesVenta(requestDto,venta));
             }catch (Exception er){
                 throw new Exception("Se produjo un error al guardar la venta: " + er);
             }
@@ -130,32 +121,25 @@ public class VentaService implements IVentaService {
 
     private VentaResponseDto setVentaResponse (Venta venta) {
 
+        log.info("INICIO DE ACTIVIDAD: setVentaResponse ");
+        log.info("Venta nro detalles: "+venta.getDetalleVentas().size() );
         VentaResponseDto response = new VentaResponseDto();
+        List<DetalleVentaResponseType> lista = new ArrayList<>();
         response.setId(venta.getId());
         response.setEstado(venta.getEstado());
         response.setFechaRegistro(venta.getFechaRegistro());
         response.setMontoTotal(venta.getMontoTotal());
         response.setIdUsuario(venta.getUsuario().getId());
+
+        for(DetalleVenta det: venta.getDetalleVentas()){
+            DetalleVentaResponseType detResponse = setDetalleVentaResponse(det);
+            lista.add(detResponse);
+        }
+        response.setDetalleVentas(lista);
         return response;
     }
 
-    private List<DetalleVentaResponseType> guardarDetallesVenta (VentaRequestDto requestDto, Venta venta) throws Exception {
-
-        List<DetalleVentaResponseType> listaResp = new ArrayList<>();
-        log.info("GUARDANDO DETALLES : ");
-        for(DetalleVentaRequestType detalleRequest: requestDto.getListaDetalles()){
-            DetalleVenta detalleVenta = new DetalleVenta();
-            try{
-                detalleVenta = setDetalleVentaRequest(detalleRequest,venta);
-                listaResp.add(setDetalleVentaResponse(detalleventaDao.save(detalleVenta)));
-            }catch (Exception e){
-                throw new Exception("Se produjo un error al guardar detalleVenta: " + e);
-            }
-        }
-        return listaResp;
-    }
-
-    private DetalleVenta setDetalleVentaRequest (DetalleVentaRequestType detalleRequest, Venta venta){
+    private DetalleVenta setDetalleVentaRequest (DetalleVentaRequestType detalleRequest){
 
         DetalleVenta detalleVenta = new DetalleVenta();
         detalleVenta.setPrecio(detalleRequest.getPrecio());
@@ -163,7 +147,6 @@ public class VentaService implements IVentaService {
         detalleVenta.setProducto(detalleRequest.getProducto());
         detalleVenta.setSubTotal(detalleRequest.getSubtotal());
         detalleVenta.setIdProducto(detalleRequest.getIdProducto());
-        detalleVenta.setVenta(venta);
         return detalleVenta;
     }
 

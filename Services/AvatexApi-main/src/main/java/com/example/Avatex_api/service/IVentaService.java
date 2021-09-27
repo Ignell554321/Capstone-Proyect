@@ -16,7 +16,7 @@ public interface IVentaService {
 
     public List<Venta> findVentas();
     public Page<Venta> findAll(Pageable pageable);
-    public Venta findVentaByID (Long id);
+    public VentaResponseDto findVentaByID (Long id);
     public Page<Venta> findByDate(BuscaXFechaRequestDto requestDto, Pageable pageable);
     public Page<Venta> findByMonth(AnioMesRequestDto requestDto, Pageable pageable);
     public VentaResponseDto save(VentaRequestDto requestDto) throws Exception;
