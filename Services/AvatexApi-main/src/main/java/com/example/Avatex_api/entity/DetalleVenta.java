@@ -27,6 +27,12 @@ public class DetalleVenta implements Serializable{
 	private int idProducto;
 	private double precio;
 	private double subTotal;
+	
+	
+	public void calcularSubtotal() {
+		this.subTotal= this.metraje*this.precio;
+	}
+	
 /*
 	@ManyToOne
 	@JoinColumn(name="venta_id")

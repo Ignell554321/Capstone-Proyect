@@ -1,7 +1,5 @@
 package com.example.Avatex_api.service.impl;
 
-import com.example.Avatex_api.dao.IDetalleVenta;
-import com.example.Avatex_api.dao.IPiezaDao;
 import com.example.Avatex_api.dao.IUsuarioDao;
 import com.example.Avatex_api.dao.IVentaDao;
 import com.example.Avatex_api.dto.common.AnioMesRequestDto;
@@ -20,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,12 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class VentaService implements IVentaService {
 
-    @Autowired
-    private IPiezaDao piezaDao;
+
     @Autowired
     private IVentaDao ventaDao;
-    @Autowired
-    private IDetalleVenta detalleventaDao;
     @Autowired
     private IUsuarioDao usuarioDao;
 
@@ -92,6 +86,7 @@ public class VentaService implements IVentaService {
                 log.info("GUARDANDO DETALLES : ");
                 for(DetalleVentaRequestType detalleRequest: requestDto.getListaDetalles()){
                     DetalleVenta det = setDetalleVentaRequest(detalleRequest);
+                    det.calcularSubtotal();
                     lista.add(det);
                 }
                 venta.setDetalleVentas(lista);

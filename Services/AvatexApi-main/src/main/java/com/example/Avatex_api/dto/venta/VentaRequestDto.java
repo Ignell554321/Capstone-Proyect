@@ -12,10 +12,10 @@ public class VentaRequestDto {
     private double montoTotal;
     private String username;
 
-    private List<DetalleVentaRequestType> listaDetalles;
+    private List<DetalleVentaRequestType> detalleVentas;
     
     public VentaRequestDto() {
-    	this.listaDetalles=new ArrayList<>();
+    	this.detalleVentas=new ArrayList<>();
     }
 
     public double getMontoTotal() {
@@ -35,10 +35,10 @@ public class VentaRequestDto {
     }
 
     public List<DetalleVentaRequestType> getListaDetalles() {
-        return listaDetalles;
+        return detalleVentas;
     }
 
-    public void setListaDetalles(List<DetalleVentaRequestType> listaDetalles) {
-        this.listaDetalles = listaDetalles;
+    public void setListaDetalles(List<DetalleVentaRequestType> detalleVentas) {
+        this.detalleVentas = detalleVentas;
     }
 }

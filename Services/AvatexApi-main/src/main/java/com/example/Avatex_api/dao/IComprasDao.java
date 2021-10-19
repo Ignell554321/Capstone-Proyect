@@ -17,4 +17,6 @@ public interface IComprasDao extends PagingAndSortingRepository<Compra,Long> {
 	public Page<Compra> findAllByMonth(Integer year, Integer month,Pageable pageable);
 
 	public Page<Compra> findByProveedor(String proveedor, Pageable pageable);
+	
+
 }
