@@ -42,9 +42,7 @@ public class CompraService implements ICompraService{
     @Override
     public Page<Compra> findByMonth(AnioMesRequestDto requestDto, Pageable pageable) {
 
-        int year = Integer.parseInt(requestDto.getAnio());
-        int month = requestDto.calcularNroMes();
-        Page<Compra> compras = compraDao.findAllByMonth(year,month,pageable);
+        Page<Compra> compras = compraDao.findAllByMonth(requestDto.parseAñoInt(), requestDto.getNroMes(), pageable);
         return compras;
     }
 

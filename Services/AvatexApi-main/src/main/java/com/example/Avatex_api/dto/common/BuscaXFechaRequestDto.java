@@ -1,16 +1,17 @@
 package com.example.Avatex_api.dto.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BuscaXFechaRequestDto {
 
     private String fecha;
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
 
     public Integer getYear(){
         return Integer.parseInt(fecha.substring(0,4));
