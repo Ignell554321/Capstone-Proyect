@@ -62,9 +62,8 @@ public class VentaService implements IVentaService {
 
     @Override
     public Page<Venta> findByMonth(AnioMesRequestDto requestDto, Pageable pageable) {
-        int year = Integer.parseInt(requestDto.getAnio());
-        int month = requestDto.calcularNroMes();
-        Page<Venta> ventas = ventaDao.findAllByMonth(year,month,pageable);
+
+        Page<Venta> ventas = ventaDao.findAllByMonth(requestDto.parseAñoInt(), requestDto.getNroMes(), pageable);
         return ventas;
     }
 

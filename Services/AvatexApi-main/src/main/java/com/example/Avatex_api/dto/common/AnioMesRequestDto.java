@@ -1,27 +1,23 @@
 package com.example.Avatex_api.dto.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AnioMesRequestDto {
     private String anio;
     private String mes;
 
-    public String getAnio() {
-        return anio;
+    public Integer parseAñoInt(){
+        return Integer.parseInt(anio);
     }
 
-    public void setAnio(String anio) {
-        this.anio = anio;
-    }
-
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
-    }
-
-
-    public Integer calcularNroMes(){
+    public Integer getNroMes(){
 
         switch (mes){
             case "Enero": return 1;

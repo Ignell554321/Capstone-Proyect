@@ -1,11 +1,20 @@
 package com.example.Avatex_api.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="kardex")
 public class Kardex implements Serializable {
 
@@ -14,9 +23,14 @@ public class Kardex implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date fechaInicio;
-
-    private Date fechaFin;
+    private String producto;
+    private String anio;
+    private String mes;
+    private double saldoMesAnterior;
+    private double saldoMesActual;
+    private double costo;
+    private double totalCompras;
+    private double totalVentas;
 
     @Transient
     private List<Compra> compra;
