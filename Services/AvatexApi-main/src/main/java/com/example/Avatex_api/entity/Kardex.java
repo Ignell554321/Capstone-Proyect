@@ -37,4 +37,12 @@ public class Kardex implements Serializable {
     @Transient
     private List<Venta> venta;
 
+    public void aumentarSaldo(double cantidad){
+        saldoMesActual += cantidad;
+    }
+
+    public void disminuirSaldo(double cantidad){
+        saldoMesActual -= cantidad;
+    }
+
 }

@@ -1,12 +1,16 @@
 package com.example.Avatex_api.service.impl;
 
 import com.example.Avatex_api.dao.IComprasDao;
+import com.example.Avatex_api.dao.IKardexDao;
 import com.example.Avatex_api.dao.IPiezaDao;
 import com.example.Avatex_api.dto.common.AnioMesRequestDto;
 import com.example.Avatex_api.dto.compra.ProveedorRequestDto;
 import com.example.Avatex_api.entity.Compra;
+import com.example.Avatex_api.entity.DetalleCompra;
+import com.example.Avatex_api.entity.Kardex;
 import com.example.Avatex_api.service.ICompraService;
 
+import com.example.Avatex_api.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +26,10 @@ public class CompraService implements ICompraService{
     private IPiezaDao piezaDao;
     @Autowired
     private IComprasDao compraDao;
+    @Autowired
+    private IKardexDao kardexDao;
+    @Autowired
+    private Utils utils;
 
 
     @Override
@@ -54,7 +62,19 @@ public class CompraService implements ICompraService{
 
     @Override
     public Compra save(Compra compra) {
-        return compraDao.save(compra);
+        Compra response = new Compra();
+        try{
+            response = compraDao.save(compra);
+            /*
+            for (DetalleCompra dc:response.getDetalleCompras()) {
+                Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dc.getNombreProducto());
+                kardex.aumentarSaldo(dc.getCantidad());
+                kardexDao.save(kardex);
+            }*/
+        }catch (Exception e){
+            throw e;
+        }
+        return response;
     }
 
     /*

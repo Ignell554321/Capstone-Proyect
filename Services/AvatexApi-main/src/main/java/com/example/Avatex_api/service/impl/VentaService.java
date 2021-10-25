@@ -1,5 +1,6 @@
 package com.example.Avatex_api.service.impl;
 
+import com.example.Avatex_api.dao.IKardexDao;
 import com.example.Avatex_api.dao.IUsuarioDao;
 import com.example.Avatex_api.dao.IVentaDao;
 import com.example.Avatex_api.dto.common.AnioMesRequestDto;
@@ -9,9 +10,11 @@ import com.example.Avatex_api.dto.venta.DetalleVentaResponseType;
 import com.example.Avatex_api.dto.venta.VentaRequestDto;
 import com.example.Avatex_api.dto.venta.VentaResponseDto;
 import com.example.Avatex_api.entity.DetalleVenta;
+import com.example.Avatex_api.entity.Kardex;
 import com.example.Avatex_api.entity.Usuario;
 import com.example.Avatex_api.entity.Venta;
 import com.example.Avatex_api.service.IVentaService;
+import com.example.Avatex_api.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +33,10 @@ public class VentaService implements IVentaService {
     private IVentaDao ventaDao;
     @Autowired
     private IUsuarioDao usuarioDao;
+    @Autowired
+    private IKardexDao kardexDao;
+    @Autowired
+    private Utils utils;
 
 
     @Override
@@ -90,6 +97,16 @@ public class VentaService implements IVentaService {
                 }
                 venta.setDetalleVentas(lista);
                 response = setVentaResponse(ventaDao.save(venta));
+                /*
+                try{
+                    for (DetalleVentaResponseType dv:response.getDetalleVentas()) {
+                        Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dv.getProducto());
+                        kardex.disminuirSaldo(dv.getMetraje());
+                        kardexDao.save(kardex);
+                    }
+                }catch (Exception error){
+                    throw new Exception("Se produjo un error al actualizar el kardex: " + error);
+                }*/
             }catch (Exception er){
                 throw new Exception("Se produjo un error al guardar la venta: " + er);
             }
