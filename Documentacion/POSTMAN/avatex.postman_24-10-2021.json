@@ -1,0 +1,335 @@
+{
+	"info": {
+		"_postman_id": "d2cad0f8-01d7-400c-8ded-73a3f0cd41f0",
+		"name": "avatex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Compras",
+			"item": [
+				{
+					"name": "BuscarCompraPorAñoMes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"anio\":\"2021\",\r\n    \"mes\":\"Setiembre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/compra/search/mes",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"compra",
+								"search",
+								"mes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarCompraPorProveedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"aris\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/compra/search/proveedor",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"compra",
+								"search",
+								"proveedor"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ventas",
+			"item": [
+				{
+					"name": "BuscarVentaPorFecha",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\":\"2021-09-25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/venta/search/date",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"venta",
+								"search",
+								"date"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarVentaPorAñoMes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"anio\":\"2021\",\r\n    \"mes\":\"Setiembre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/venta/search/month",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"venta",
+								"search",
+								"month"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegistrarVenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"montoTotal\":\"60\",\r\n    \"username\":\"admin1\",\r\n    \"listaDetalles\":[\r\n        {\r\n            \"producto\":\"polystel delgado\",\r\n            \"metraje\":\"2\",\r\n            \"idProducto\":\"7\",\r\n            \"precio\":\"23\",\r\n            \"subtotal\":\"46\"\r\n        },\r\n        {\r\n            \"producto\":\"polipima\",\r\n            \"metraje\":\"2\",\r\n            \"idProducto\":\"4\",\r\n            \"precio\":\"7\",\r\n            \"subtotal\":\"14\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/venta",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"venta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AnularVenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/venta/cancel",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"venta",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtenerVentaPorID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/venta/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"venta",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventario",
+			"item": [
+				{
+					"name": "BuscarInventario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"anio\":\"2021\",\r\n    \"mes\":\"Octubre\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/inventario/search/inventario",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"inventario",
+								"search",
+								"inventario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuscarKardex",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"producto\":\"polystel delgado gris\",\r\n    \"fecha\": {\r\n        \"anio\":\"2021\",\r\n        \"mes\":\"Octubre\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/inventario/search/kardex",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"inventario",
+								"search",
+								"kardex"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movimientos",
+			"item": []
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "localhost:8081/oauth/token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "angularapp",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "admin1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "vhugo55",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8081/oauth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"oauth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

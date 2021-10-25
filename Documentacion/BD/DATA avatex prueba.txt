@@ -1,0 +1,52 @@
+
+DATA
+
+/*
+--usuario:admin1
+--password:vhugo55
+*/
+/*
+--usuario:usuario1
+--password:angela59
+*/
+
+use db_avatex;
+/*--PRODUCTOS---------------------------------------------------------------------------------------------*/
+
+insert into productos (costo, descripcion, nombre) value('4','color entero','razo');
+insert into productos (costo, descripcion, nombre) value('7','color entero','polipima');
+insert into productos (costo, descripcion, nombre) value('3','color entero','poliseda');
+insert into productos (costo, descripcion, nombre) value('12','color entero','dril');
+insert into productos (costo, descripcion, nombre) value('8','color entero','polar');
+insert into productos (costo, descripcion, nombre) value('10','estampado','polar');
+
+/*--USUARIOS---------------------------------------------------------------------------------------------*/
+
+insert into usuarios (password, username) value ('$2a$10$nJzigUHJfW.lIVNUa.MzyuJsvK0kRvWLcqoM16nmKPshyQBxNvYCK', 'admin1');
+insert into usuarios (password, username) value ('$2a$10$8auM8Ikx6XfDh5rSP3cmnuJaq99X.sN4qB/2679TgY3o9njRDgoci', 'usuario1');
+
+/*--ROLES---------------------------------------------------------------------------------------------*/
+
+insert into roles (nombre) value ('ADMIN');
+insert into roles (nombre) value ('USER');
+
+/*--USUARIOS_ROLES---------------------------------------------------------------------------------------------*/
+
+insert into usuarios_roles (usuario_id,roles_id) value ('1','1');
+insert into usuarios_roles (usuario_id,roles_id) value ('2','2');
+
+/*--KARDEX-------------------------------------------------------------------
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '5', 'polipima importada', '120', '60', '100', '40');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '6', 'polipima nacional', '120', '60', '100', '40');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Setiembre', '10', 'polipima john holden', '120', '60', '100', '40');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Setiembre', '18', 'polystel delgado gris', '80', '30', '60', '10');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '18', 'polystel delgado gris', '50', '80', '0', '30');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '18', 'polystel delgado azul marino', '30', '20', '50', '40');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '18', 'polystel delgado negro', '20', '40', '30', '50');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '18', 'polystel delgado azul noche', '20', '30', '30', '40');
+INSERT INTO `db_avatex`.`kardex` (`anio`, `mes`, `costo`, `producto`, `saldo_mes_actual`, `saldo_mes_anterior`, `total_compras`, `total_ventas`) VALUES ('2021', 'Octubre', '18', 'polystel delgado blanco', '20', '10', '30', '20');
+
+
+
+
+

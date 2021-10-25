@@ -18,4 +18,7 @@ public interface IKardexDao extends PagingAndSortingRepository<Kardex,Long> {
 
     @Query(nativeQuery = true, value="select * from kardex k where k.anio=?1 and k.mes=?2")
     public List<Kardex> findAllByMes (String year, String month);
+
+    @Query(nativeQuery = true, value="select * from kardex k where k.anio=?1 and k.mes=?2 and k.producto=?3")
+    public Kardex findByMesProducto (String year, String month, String producto);
 }
