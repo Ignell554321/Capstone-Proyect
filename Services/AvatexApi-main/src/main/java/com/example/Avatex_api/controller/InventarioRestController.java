@@ -1,11 +1,8 @@
 package com.example.Avatex_api.controller;
 
 import com.example.Avatex_api.dto.common.AnioMesRequestDto;
-<<<<<<< HEAD
-=======
-import com.example.Avatex_api.dto.common.BuscaXFechaRequestDto;
 import com.example.Avatex_api.dto.inventario.KardexRequestDto;
->>>>>>> 6a9805d29924657c5852d7b661295098d0bc2e2a
+
 import com.example.Avatex_api.service.IInventarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -16,13 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/Inventario")
-=======
 @RequestMapping("/inventario")
->>>>>>> 6a9805d29924657c5852d7b661295098d0bc2e2a
 @RestController
 public class InventarioRestController {
 

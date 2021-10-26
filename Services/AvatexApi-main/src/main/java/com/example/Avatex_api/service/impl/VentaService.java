@@ -97,7 +97,7 @@ public class VentaService implements IVentaService {
                 }
                 venta.setDetalleVentas(lista);
                 response = setVentaResponse(ventaDao.save(venta));
-                /*
+                
                 try{
                     for (DetalleVentaResponseType dv:response.getDetalleVentas()) {
                         Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dv.getProducto());
@@ -106,7 +106,7 @@ public class VentaService implements IVentaService {
                     }
                 }catch (Exception error){
                     throw new Exception("Se produjo un error al actualizar el kardex: " + error);
-                }*/
+                }
             }catch (Exception er){
                 throw new Exception("Se produjo un error al guardar la venta: " + er);
             }

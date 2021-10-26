@@ -65,12 +65,12 @@ public class CompraService implements ICompraService{
         Compra response = new Compra();
         try{
             response = compraDao.save(compra);
-            /*
+            
             for (DetalleCompra dc:response.getDetalleCompras()) {
                 Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dc.getNombreProducto());
                 kardex.aumentarSaldo(dc.getCantidad());
                 kardexDao.save(kardex);
-            }*/
+            }
         }catch (Exception e){
             throw e;
         }
