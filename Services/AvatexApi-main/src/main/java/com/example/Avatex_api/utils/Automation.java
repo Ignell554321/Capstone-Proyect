@@ -24,7 +24,7 @@ public class Automation {
     @Autowired
     private Utils utils;
 
-    @Scheduled(cron="0 55 21 25 1-12 ?")
+    @Scheduled(cron="0 0 0 1 1-12 ?")
     private void generarKardexDelMes (){
 
     	log.info("mensaje de prueba");
