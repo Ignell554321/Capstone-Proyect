@@ -69,6 +69,7 @@ public class CompraService implements ICompraService{
             for (DetalleCompra dc:response.getDetalleCompras()) {
                 Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dc.getNombreProducto());
                 kardex.aumentarSaldo(dc.getCantidad());
+                kardex.aumentarTotalCompras(dc.getCantidad());
                 kardexDao.save(kardex);
             }
         }catch (Exception e){

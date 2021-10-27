@@ -102,6 +102,7 @@ public class VentaService implements IVentaService {
                     for (DetalleVentaResponseType dv:response.getDetalleVentas()) {
                         Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dv.getProducto());
                         kardex.disminuirSaldo(dv.getMetraje());
+                        kardex.aumentarTotalVentas(dv.getMetraje());
                         kardexDao.save(kardex);
                     }
                 }catch (Exception error){

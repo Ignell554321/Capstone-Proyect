@@ -45,4 +45,12 @@ public class Kardex implements Serializable {
         saldoMesActual -= cantidad;
     }
 
+    public void aumentarTotalCompras(double cantidad){
+        totalCompras += cantidad;
+    }
+
+    public void aumentarTotalVentas(double cantidad){
+        totalVentas += cantidad;
+    }
+
 }

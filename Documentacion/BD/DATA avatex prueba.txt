@@ -13,12 +13,14 @@ DATA
 use db_avatex;
 /*--PRODUCTOS---------------------------------------------------------------------------------------------*/
 
-insert into productos (costo, descripcion, nombre) value('4','color entero','razo');
-insert into productos (costo, descripcion, nombre) value('7','color entero','polipima');
-insert into productos (costo, descripcion, nombre) value('3','color entero','poliseda');
-insert into productos (costo, descripcion, nombre) value('12','color entero','dril');
-insert into productos (costo, descripcion, nombre) value('8','color entero','polar');
-insert into productos (costo, descripcion, nombre) value('10','estampado','polar');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('7', 'color entero', 'polipima nacional');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('8', 'color entero', 'polipima john holden');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('18', 'color entero', 'polystel delgado gris');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('18', 'color entero', 'polystel delgado azul marino');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('18', 'color entero', 'polystel delgado negro');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('18', 'color entero', 'polystel delgado azul noche');
+INSERT INTO `db_avatex`.`productos` (`costo`, `descripcion`, `nombre`) VALUES ('18', 'color entero', 'polystel delgado blanco');
+
 
 /*--USUARIOS---------------------------------------------------------------------------------------------*/
 
