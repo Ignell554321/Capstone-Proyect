@@ -93,4 +93,19 @@ public class ReportesController {
  
     }
 
+	@RequestMapping(value ="/Inventario", method = RequestMethod.GET)
+    public void InventarioPDF( HttpServletResponse response) throws  Exception{
+
+		
+		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/Inventario.jasper");
+	    JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, datasource.getConnection());
+        
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "inline;");
+        final OutputStream outputStream = response.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+ 
+    }
+	
 }
