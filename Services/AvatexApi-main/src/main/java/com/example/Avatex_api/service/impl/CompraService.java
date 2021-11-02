@@ -70,6 +70,7 @@ public class CompraService implements ICompraService{
                 Kardex kardex = kardexDao.findByMesProducto(utils.getAñoActual(), utils.getMesActual(), dc.getNombreProducto());
                 kardex.aumentarSaldo(dc.getCantidad());
                 kardex.aumentarTotalCompras(dc.getCantidad());
+                kardex.setCosto(dc.getPrecio());
                 kardexDao.save(kardex);
             }
         }catch (Exception e){
@@ -78,14 +79,6 @@ public class CompraService implements ICompraService{
         return response;
     }
 
-    /*
-    @Override
-    public Compra update(Long id) {
-        Compra compra = new Compra();
-        compra = compraDao.findById(id).orElse(null);
-        return compraDao.save(compra);
-    }
-    */
 
 	@Override
 	public Page<Compra> findAll(Pageable pageable) {

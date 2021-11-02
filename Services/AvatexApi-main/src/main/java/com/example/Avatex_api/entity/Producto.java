@@ -13,12 +13,12 @@ public class Producto implements Serializable {
     private Long id;
     private String nombre;
     private String descripcion;
-    private Double costo;
+    private Double precio;
 
-    public Producto(String nombre, String descripcion, Double costo) {
+    public Producto(String nombre, String descripcion, Double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.costo = costo;
+        this.precio = precio;
     }
 
     public Producto(){};
@@ -47,12 +47,12 @@ public class Producto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Double getCosto() {
-        return costo;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setCosto(Double costo) {
-        this.costo = costo;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
 }

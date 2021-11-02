@@ -13,12 +13,16 @@ public interface IPiezaDao extends PagingAndSortingRepository<Pieza,Long> {
 
     @Query(value = "SELECT * FROM piezas p WHERE p.id = :id", nativeQuery = true)
     Pieza findByID(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM piezas p WHERE p.producto_id = ?1", nativeQuery = true)
+    public List<Pieza> findByProducto(Long idProducto,Pageable pageable);
+
+    /*
     @Query(value = "SELECT p.id, p.metraje, p.color, p.ubicacion, p.fecha, p.producto_id " +
             "FROM piezas p INNER JOIN productos pd ON (p.producto_id = pd.id)  WHERE pd.nombre = :nombre",
             nativeQuery = true)
     List<Pieza> findByName(@Param("nombre") String nombre);
-        
+
     public Page<Pieza> findByColor(String color,Pageable pageable);
-    
-    public Page<Pieza> findByProducto(Producto producto,Pageable pageable);
+    */
 }

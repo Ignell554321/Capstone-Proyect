@@ -14,19 +14,31 @@ import com.example.Avatex_api.service.IProductoService;
 @Service
 public class ProductoServiceImpl implements IProductoService{
 
-	 @Autowired
-	private IProductoDao repository;
+	@Autowired
+	private IProductoDao productoDao;
+
 	
 	@Override
 	public List<Producto> findAllProductos() {
 		
-		return repository.findAll();
+		return productoDao.findAll();
 	}
 
 	@Override
 	public Page<Producto> findAll(Pageable pageable) {
 		
-		return repository.findAll(pageable);
+		return productoDao.findAll(pageable);
 	}
+
+	@Override
+	public Producto save(Producto producto) {
+		return productoDao.save(producto);
+	}
+
+	@Override
+	public Producto update(Producto producto) {
+		return productoDao.save(producto);
+	}
+
 
 }

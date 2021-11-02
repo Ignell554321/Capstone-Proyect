@@ -10,4 +10,6 @@ public interface IProductoService {
 	
 	public List<Producto> findAllProductos();
 	public Page<Producto> findAll(Pageable pageable);
+	public Producto save (Producto producto);
+	public Producto update (Producto producto);
 }
