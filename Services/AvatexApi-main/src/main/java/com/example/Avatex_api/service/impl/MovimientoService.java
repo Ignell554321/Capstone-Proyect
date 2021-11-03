@@ -69,9 +69,10 @@ public class MovimientoService implements IMovimientoService{
 
     @Override
     public Movimiento SolicitarRetiro(Movimiento movimiento) {
+        /*
         if(movimiento.getUnidad().equals("Pieza")){
             movimiento.setCantidad(movimiento.getPieza().getMetraje());
-        }
+        }*/
         return movimientoDao.save(movimiento);
     }
 

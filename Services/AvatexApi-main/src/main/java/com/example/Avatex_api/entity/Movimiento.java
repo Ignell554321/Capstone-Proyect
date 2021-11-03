@@ -21,8 +21,8 @@ public class Movimiento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date fecha;
-    private String unidad; // pieza - mts
     private Double cantidad;
+    private String tipo;    // retiro - dividir - anularRetiro
     private String estado; // espera - finalizado
     @JoinColumn(name="pieza_id")
     @OneToOne

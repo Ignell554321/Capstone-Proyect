@@ -23,7 +23,7 @@ public class Pieza implements Serializable {
     private Long id;
     private Double metraje;
     private String color;
-    private String ubicacion;
+    private String ubicacion; //Almacen - tienda
     private Date fecha; //fecha de registro
     @JoinColumn(name="producto_id")
     @OneToOne
