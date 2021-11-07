@@ -22,14 +22,11 @@ public class Movimiento implements Serializable {
     private Long id;
     private Date fecha;
     private Double cantidad;
-    private String tipo;    // retiro - dividir - anularRetiro
-    private String estado; // espera - finalizado
+    private String tipoOperacion;    // retiro - dividir - anularRetiro -anularOperacion
+    private String usuario;
     @JoinColumn(name="pieza_id")
     @OneToOne
     private Pieza pieza;
-    @JoinColumn(name="usuario_id")
-    @OneToOne
-    private Usuario usuario;
 
 
 }

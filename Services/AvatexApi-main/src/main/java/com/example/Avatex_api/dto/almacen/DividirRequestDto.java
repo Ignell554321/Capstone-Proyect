@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PiezaRequestDto {
+public class DividirRequestDto {
 
-    private Long idProducto;
+    private Long id;
     private Double metraje;
-    private String color;
-
 }

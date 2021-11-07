@@ -29,8 +29,11 @@ public class Pieza implements Serializable {
     @OneToOne
     private Producto producto;
 
-    public Double RestarMetraje(Double cantidad){
-        Double resto = this.getMetraje() - cantidad;
-        return resto;
+    public void RestarMetraje(Double cantidad){
+        metraje = this.getMetraje() - cantidad;
+    }
+
+    public void AgregarMetraje(Double cantidad){
+        metraje = this.getMetraje() + cantidad;
     }
 }
