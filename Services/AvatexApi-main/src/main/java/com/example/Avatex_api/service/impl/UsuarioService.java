@@ -1,7 +1,5 @@
-package com.example.Avatex_api.service.impl;
-
 /*
-package com.example.Avatex_api.service;
+package com.example.Avatex_api.service.impl;
 
 import com.example.Avatex_api.dao.IUsuarioDao;
 import com.example.Avatex_api.entity.Usuario;
@@ -45,8 +43,7 @@ public class UsuarioService implements UserDetailsService {
                 .peek(authority -> logger.info("Rol: " + authority.getAuthority()))
                 .collect(Collectors.toList());
 
-
+ 
         return new User(usuario.getUsername(), usuario.getPassword(),true, true, true, true, authorities);
     }
-}
-*/
+}*/

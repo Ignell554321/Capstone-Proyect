@@ -33,6 +33,7 @@ public class Automation {
     private Utils utils;
 
     @Scheduled(cron="0 0 0 1 1-12 ?")
+    //@Scheduled(cron="0 51 20 7 1-12 ?")
     private void generarKardexDelMes (){
 
     	log.info("mensaje de prueba");
