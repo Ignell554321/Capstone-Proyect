@@ -146,7 +146,7 @@ public class AlmacenService implements IAlmacenService {
     public Pieza anular(IdRequestDto requestDto) {
         Movimiento movimiento = movimientoDao.findById(requestDto.getId()).orElse(null);
         String operacion = movimiento.getTipoOperacion();
-        Pieza pieza = piezaDao.findByID(movimiento.getId());
+        Pieza pieza = piezaDao.findByID(movimiento.getPieza().getId());
         Pieza response;
         if(operacion.equals("RETIRO")){
 
