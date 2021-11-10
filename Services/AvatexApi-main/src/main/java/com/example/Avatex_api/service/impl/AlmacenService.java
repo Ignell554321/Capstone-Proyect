@@ -96,7 +96,7 @@ public class AlmacenService implements IAlmacenService {
         if( response!= null){
             Movimiento mov = movimientoDao.save(Movimiento.builder()
                     .fecha(new Date())
-                    .cantidad(pieza.getMetraje())
+                    .cantidad(requestDto.getMetraje())
                     .tipoOperacion("DIVIDIR")
                     .usuario("")
                     .pieza(response)
