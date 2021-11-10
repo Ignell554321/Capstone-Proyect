@@ -32,7 +32,7 @@ public class AlmacenService implements IAlmacenService {
 
     @Override
     public List<Pieza> findByProducto(IdRequestDto requestDto, Pageable pageable) {
-        return  piezaDao.findByProducto(requestDto.getId(),pageable);
+        return  (List<Pieza>) piezaDao.findByProducto(requestDto.getId(),pageable);
     }
 
     @Override
