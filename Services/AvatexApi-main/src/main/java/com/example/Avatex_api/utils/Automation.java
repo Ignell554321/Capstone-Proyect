@@ -60,4 +60,29 @@ public class Automation {
 
     }
 
+/*
+    @Scheduled(cron="0 55 20 9 1-12 ?")
+    private void generarKardex (){
+
+        log.info("kardex inicial");
+
+        List<Producto> productos = productoDao.findAll();
+
+        for (Producto prod:productos) {
+            Kardex kardex = new Kardex();
+            kardex.builder().
+                    anio("2021").
+                    mes("OCTUBRE").
+                    producto(prod.getNombre()).
+                    costo(10).
+                    saldoMesAnterior(120).
+                    saldoMesActual(60).
+                    totalVentas(100).
+                    totalCompras(40).
+                    build();
+            kardexDao.save(kardex);
+        }
+    }
+ */
+
 }
