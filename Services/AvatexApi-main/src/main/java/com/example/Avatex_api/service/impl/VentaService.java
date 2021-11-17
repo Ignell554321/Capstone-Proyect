@@ -85,7 +85,7 @@ public class VentaService implements IVentaService {
                 venta.setMontoTotal(requestDto.getMontoTotal());
                 venta.setEstado("CREADO");
                 Usuario user = usuarioDao.findByUsername(requestDto.getUsername());
-                venta.setUsuario(user);
+                venta.setUsuario(requestDto.getUsername());
 
                 //NUEVO CODIGO
                 List<DetalleVenta> lista = new ArrayList<>();
@@ -141,7 +141,7 @@ public class VentaService implements IVentaService {
         response.setEstado(venta.getEstado());
         response.setFechaRegistro(venta.getFechaRegistro());
         response.setMontoTotal(venta.getMontoTotal());
-        response.setIdUsuario(venta.getUsuario().getId());
+        response.setUsuario(venta.getUsuario());
 
         for(DetalleVenta det: venta.getDetalleVentas()){
             DetalleVentaResponseType detResponse = setDetalleVentaResponse(det);

@@ -12,6 +12,7 @@ import com.example.Avatex_api.entity.Producto;
 import com.example.Avatex_api.service.IAlmacenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,8 @@ public class AlmacenService implements IAlmacenService {
 
 
     @Override
-    public List<Pieza> findByProducto(IdRequestDto requestDto, Pageable pageable) {
-        return  (List<Pieza>) piezaDao.findByProducto(requestDto.getId(),pageable);
+    public Page<Pieza> findByProducto(IdRequestDto requestDto, Pageable pageable) {
+        return  piezaDao.findByProducto(requestDto.getId(),pageable);
     }
 
     @Override

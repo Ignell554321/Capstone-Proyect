@@ -21,6 +21,6 @@ public class VentaResponseDto {
     private Date fechaRegistro;
     private double montoTotal;
     private String estado;
-    private Long idUsuario;
+    private String usuario;
     private List<DetalleVentaResponseType> detalleVentas;
 }

@@ -1,4 +1,4 @@
-/*
+
 package com.example.Avatex_api.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,4 +65,3 @@ public class AuthirizationServerConfig extends AuthorizationServerConfigurerAdap
         return jwtAccessTokenConverter;
     }
 }
-*/
