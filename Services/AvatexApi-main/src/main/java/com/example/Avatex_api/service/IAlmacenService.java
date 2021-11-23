@@ -13,7 +13,7 @@ import java.util.List;
 public interface IAlmacenService {
 
     public Page<Pieza> findByProducto(IdRequestDto requestDto, Pageable pageable);
-    public List<Movimiento> obtenerMovimientos();
+    public Page<Movimiento> obtenerMovimientos(Pageable pageable);
     public Pieza save(PiezaRequestDto requestDto);
     public Pieza retirar(IdRequestDto requestDto);
     public Pieza dividir(DividirRequestDto requestDto);

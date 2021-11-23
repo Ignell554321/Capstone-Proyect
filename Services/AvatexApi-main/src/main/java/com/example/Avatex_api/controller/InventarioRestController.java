@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/inventario")
+@RequestMapping("/api")
 @RestController
 public class InventarioRestController {
 
     @Autowired
     private IInventarioService inventarioService;
 
-    @PostMapping("/search/inventario")
+    @PostMapping("/inventario/search/inventario")
     public ResponseEntity<?> buscarInventario (@RequestBody AnioMesRequestDto requestDto, Pageable pageable){
         return ResponseEntity.ok(inventarioService.obtenerInventario(requestDto,pageable));
     }
-    @PostMapping("/search/kardex")
+    @PostMapping("/inventario/search/kardex")
     public ResponseEntity<?> buscarKardex (@RequestBody KardexRequestDto requestDto){
         return ResponseEntity.ok(inventarioService.obtenerKardex(requestDto));
     }

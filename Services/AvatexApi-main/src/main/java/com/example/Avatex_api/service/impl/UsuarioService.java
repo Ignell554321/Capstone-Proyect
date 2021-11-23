@@ -1,4 +1,4 @@
-
+/*
 package com.example.Avatex_api.service.impl;
 
 import com.example.Avatex_api.dao.IUsuarioDao;
@@ -47,3 +47,4 @@ public class UsuarioService implements UserDetailsService {
         return new User(usuario.getUsername(), usuario.getPassword(),true, true, true, true, authorities);
     }
 }
+*/

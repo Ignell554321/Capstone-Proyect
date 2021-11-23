@@ -37,8 +37,9 @@ public class AlmacenService implements IAlmacenService {
     }
 
     @Override
-    public List<Movimiento> obtenerMovimientos() {
-        return (List<Movimiento>) movimientoDao.findAll();
+    public Page<Movimiento> obtenerMovimientos(Pageable pageable) {
+
+        return movimientoDao.findAll(pageable);
     }
 
     @Override

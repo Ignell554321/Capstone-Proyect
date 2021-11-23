@@ -20,7 +20,7 @@ import java.util.List;
 import javax.persistence.ElementCollection;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/compra")
+@RequestMapping("/api")
 @RestController
 public class CompraRestController {
 
@@ -35,35 +35,35 @@ public class CompraRestController {
         return compraService.findCompras();
     }
     
-    @GetMapping("/pagina")
+    @GetMapping("/compra/pagina")
  	public ResponseEntity<?> listar(Pageable pageable) 
  	{
  		return ResponseEntity.ok().body(compraService.findAll(pageable));
  	}
 
 	//PAGINADO VALE
-	@PostMapping("/search/mes")
+	@PostMapping("/compra/search/mes")
 	public ResponseEntity<?> listarPorMes(@RequestBody AnioMesRequestDto requestDto, Pageable pageable)
 	{
 		return ResponseEntity.ok().body(compraService.findByMonth(requestDto,pageable));
 	}
 
 	//PAGINADO VALE
-	@PostMapping("/search/proveedor")
+	@PostMapping("/compra/search/proveedor")
 	public ResponseEntity<?> listarPorProveedor(@RequestBody ProveedorRequestDto requestDto, Pageable pageable)
 	{
 		return ResponseEntity.ok().body(compraService.findByProveedor(requestDto,pageable));
 	}
 
     //PAGINADO VALE
-    @GetMapping("/pagina/{estado}")
+    @GetMapping("/compra/pagina/{estado}")
  	public ResponseEntity<?> listarPorEstado(@PathVariable("estado") String estado,Pageable pageable) 
  	{
  		return ResponseEntity.ok().body(compraService.findByEstado(estado,pageable));
  	}
     
   //ADMIN  VALE
-    @GetMapping("/fechaPago/{fecha}")
+    @GetMapping("/compra/fechaPago/{fecha}")
     public ResponseEntity<?>  findByProducto(@PathVariable("fecha") String fecha,Pageable pageable) {
 
     	return ResponseEntity.ok().body(compraService.findByFechaPagoAndEstado(fecha,pageable));  
@@ -71,7 +71,7 @@ public class CompraRestController {
     }
     
     //VALE
-	@PostMapping("/eliminarDetalle")
+	@PostMapping("/compra/eliminarDetalle")
 	public ResponseEntity<?> eliminarDetalle(@RequestBody DetalleCompra detalleCompra) throws JsonParseException,IOException{
 		
 		int indice=0;
@@ -89,7 +89,7 @@ public class CompraRestController {
 	}
 	
 	//VALE
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/compra/eliminar/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable("id") Long id) throws JsonParseException,IOException{
 
 		return ResponseEntity.ok(compraService.anularCompra(id));
@@ -97,7 +97,7 @@ public class CompraRestController {
 	}
 
 	//VALE
-    @GetMapping("/{id}")
+    @GetMapping("/compra/{id}")
     public Compra findById(@PathVariable("id") Long id){
     	
     	Compra c= compraService.findCompraByID(id);
@@ -106,7 +106,7 @@ public class CompraRestController {
     }
     
     //VALE
-    @RequestMapping(value= {"/limpiarDetalles"},method=RequestMethod.GET)
+    @RequestMapping(value= {"/compra/limpiarDetalles"},method=RequestMethod.GET)
 	public ResponseEntity<?> limpiarDetalles() throws JsonProcessingException, ParseException {
 	
     	this.listaDetalle.clear();
@@ -114,14 +114,14 @@ public class CompraRestController {
 	}
     
     //VALE
-    @RequestMapping(value= {"/listarDetalles"},method=RequestMethod.GET)
+    @RequestMapping(value= {"/compra/listarDetalles"},method=RequestMethod.GET)
 	public ResponseEntity<?> listarDetalles() throws JsonProcessingException, ParseException {
 
     	return ResponseEntity.ok().body(listaDetalle);
 	}
     
     //VALE
-    @PostMapping(value = "/addDetalle" )
+    @PostMapping(value = "/compra/addDetalle" )
 	public  ResponseEntity<?> addDetail(@RequestBody DetalleCompra detalle)
 	{
     	detalle.calcularSubTotal();

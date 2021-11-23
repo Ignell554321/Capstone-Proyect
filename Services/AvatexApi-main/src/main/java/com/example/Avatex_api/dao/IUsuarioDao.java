@@ -10,5 +10,7 @@ public interface IUsuarioDao  extends JpaRepository<Usuario, Long> {
 
     @Query(nativeQuery = true, value="select id from usuarios where username=?1")
     public Long findIdUser(String username);
+
     public Usuario findByUsername(String username);
+    public Usuario findByUsernameAndPassword(String username, String password);
 }

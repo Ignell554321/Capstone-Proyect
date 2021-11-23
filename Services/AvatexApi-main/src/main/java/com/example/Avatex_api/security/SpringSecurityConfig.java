@@ -1,4 +1,4 @@
-
+/*
 package com.example.Avatex_api.security;
 
 import org.bouncycastle.crypto.generators.BCrypt;
@@ -31,7 +31,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(this.usuarioService).passwordEncoder(passwordEncoder());
     }
 
-    @Bean
+    @Bean("authenticationManager")
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
@@ -50,3 +50,4 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 }
+*/

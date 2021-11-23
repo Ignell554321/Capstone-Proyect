@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/venta")
+@RequestMapping("/api/venta")
 @RestController
 public class VentaRestController {
 
@@ -49,7 +49,7 @@ public class VentaRestController {
         return ResponseEntity.ok(ventaService.findByMonth(requestDto,pageable));
     }
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<?> registrar (@RequestBody VentaRequestDto requestDto) throws Exception {
         return ResponseEntity.ok(ventaService.save(requestDto));
     }

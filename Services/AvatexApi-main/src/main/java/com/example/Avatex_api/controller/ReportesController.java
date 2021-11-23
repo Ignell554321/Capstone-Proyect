@@ -20,7 +20,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/Reporte")
+@RequestMapping("/api")
 public class ReportesController {
 	
 	
@@ -28,7 +28,7 @@ public class ReportesController {
 	@Autowired
 	protected DataSource datasource;
 	
-	@RequestMapping(value ="/Venta/{idVenta}", method = RequestMethod.GET)
+	@RequestMapping(value ="/Reporte/Venta/{idVenta}", method = RequestMethod.GET)
     public void ventaPDF( HttpServletResponse response,@PathVariable(value="idVenta") Long idVenta) throws  Exception{
 
 		
@@ -46,7 +46,7 @@ public class ReportesController {
     }
 
 	
-	@RequestMapping(value ="/Compra/{idCompra}", method = RequestMethod.GET)
+	@RequestMapping(value ="/Reporte/Compra/{idCompra}", method = RequestMethod.GET)
     public void compraPDF( HttpServletResponse response,@PathVariable(value="idCompra") Long idCompra) throws  Exception{
 
 		
@@ -63,7 +63,7 @@ public class ReportesController {
  
     }
 	
-	@RequestMapping(value ="/Compras", method = RequestMethod.GET)
+	@RequestMapping(value ="/Reporte/Compras", method = RequestMethod.GET)
     public void compraMesPDF( HttpServletResponse response) throws  Exception{
 
 		
@@ -78,7 +78,7 @@ public class ReportesController {
  
     }
 	
-	@RequestMapping(value ="/Ventas", method = RequestMethod.GET)
+	@RequestMapping(value ="/Reporte/Ventas", method = RequestMethod.GET)
     public void ventaMesPDF( HttpServletResponse response) throws  Exception{
 
 		
@@ -93,7 +93,7 @@ public class ReportesController {
  
     }
 
-	@RequestMapping(value ="/Inventario", method = RequestMethod.GET)
+	@RequestMapping(value ="/Reporte/Inventario", method = RequestMethod.GET)
     public void InventarioPDF( HttpServletResponse response) throws  Exception{
 
 		

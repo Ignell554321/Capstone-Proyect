@@ -13,13 +13,13 @@ import com.example.Avatex_api.service.IPiezaService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/Pieza")
+@RequestMapping("/api")
 public class PiezaRestController {
 	
 	@Autowired
 	private IPiezaService service;
 	
-	@GetMapping("/pagina/{idProducto}")
+	@GetMapping("/pieza/pagina/{idProducto}")
 	public ResponseEntity<?> paginado(@PathVariable Long idProducto,Pageable pageable){
 		return ResponseEntity.ok(service.findByProducto(idProducto, pageable));
 	}

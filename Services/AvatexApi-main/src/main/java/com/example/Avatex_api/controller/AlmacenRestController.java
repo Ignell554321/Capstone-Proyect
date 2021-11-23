@@ -10,43 +10,43 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
-@RequestMapping("/almacenamiento")
+@RequestMapping("/api")
 @RestController
 public class AlmacenRestController {
     @Autowired
     private IAlmacenService almacenService;
 
     //ADMIN - USER
-    @GetMapping("/movimientos")
-    public ResponseEntity<?> obtenerMovimientos(){
-        return ResponseEntity.ok().body(almacenService.obtenerMovimientos());
+    @GetMapping("/almacenamiento/movimientos")
+    public ResponseEntity<?> obtenerMovimientos(Pageable pageable){
+        return ResponseEntity.ok().body(almacenService.obtenerMovimientos(pageable));
     }
 
     //ADMIN - USER
-    @PostMapping("/piezas")
+    @PostMapping("/almacenamiento/piezas")
     public ResponseEntity<?> obtenerPiezas(@RequestBody IdRequestDto requestDto, Pageable pageable){
         return ResponseEntity.ok().body(almacenService.findByProducto(requestDto, pageable));
     }
 
 
     //ADMIN
-    @PostMapping("/registrar")
+    @PostMapping("/almacenamiento/registrar")
     public ResponseEntity<?> registrar(@RequestBody PiezaRequestDto requestDto){
         return ResponseEntity.ok().body(almacenService.save(requestDto));
     }
 
     //ADMIN
-    @PutMapping("/retirar")
+    @PutMapping("/almacenamiento/retirar")
     public ResponseEntity<?> retirar(@RequestBody IdRequestDto requestDto){
         return ResponseEntity.ok().body(almacenService.retirar(requestDto));
     }
 
-    @PutMapping("/dividir")
+    @PutMapping("/almacenamiento/dividir")
     public ResponseEntity<?> dividir(@RequestBody DividirRequestDto requestDto){
         return ResponseEntity.ok().body(almacenService.dividir(requestDto));
     }
 
-    @PutMapping("/anular")
+    @PutMapping("/almacenamiento/anular")
     public ResponseEntity<?> anular(@RequestBody IdRequestDto requestDto){
         return ResponseEntity.ok().body(almacenService.anular(requestDto));
     }
